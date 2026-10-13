@@ -1,4 +1,4 @@
-.hero > div:not(.hero-video-layer):not(.heroart){min-height:300px;position:relative;z-index:2;background:url('lcc-logo.png') left center/340px auto no-repeat!important}
+.hero > div:not(.hero-video-layer):not(.heroart){min-height:300px;position:relative;z-index:2;background:url('https://raw.githubusercontent.com/CheongPaul/lcc/main/6acda41a7ec5a.png') left center/340px auto no-repeat!important}
 .hero > div:not(.hero-video-layer):not(.heroart)>*{display:none!important}
 .heroart{position:relative;z-index:2}
 .heroart b{font-size:0}
