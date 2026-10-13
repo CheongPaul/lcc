@@ -45,7 +45,6 @@ function calculatePowerRankings(records) {
     const count=p.scores.length,mean=count?p.scores.reduce((a,b)=>a+b,0)/count:null;
     return {...p,scoredGames:count,score:count?Math.max(0,Math.min(100,50+1.5*((count*mean+5*50)/(count+5)-50))):null,provisional:count<5};
   }).sort((a,b)=>a.score==null?b.score==null?a.name.localeCompare(b.name):1:b.score==null?-1:b.score-a.score||a.name.localeCompare(b.name));
-  // Identical displayed scores share a rank; names only order tied cards consistently.
   let last=null,rank=0;
   return ranked.map((p,i)=>{const displayed=p.score==null?null:p.score.toFixed(1);if(displayed!==last)rank=i+1;last=displayed;return {...p,rank:p.score==null?null:rank};});
 }
@@ -85,31 +84,3 @@ function powerRankingSummary(){
 }
 
 function powerProfileSummary(name){const p=powerRankings().find(p=>p.name===name);if(!p)return '';return `<section class="power-profile"><div><span class="eyebrow">Power ranking</span><strong>${n(p.score,1)} <small>/ 100</small></strong></div><div><span>Season rank</span><strong>${p.rank==null?'—':'#'+p.rank}</strong></div><div class="power-flags">${powerFlags(p)}</div></section>`;}
-
-function leaderboardRankMovementBadge(value){
-  if(value==null)return '<span class="leaderboard-rank-move new" title="No previous matchday">—</span>';
-  if(value>0)return `<span class="leaderboard-rank-move up" title="Up ${value} since previous matchday">▲${value}</span>`;
-  if(value<0)return `<span class="leaderboard-rank-move down" title="Down ${Math.abs(value)} since previous matchday">▼${Math.abs(value)}</span>`;
-  return '<span class="leaderboard-rank-move same" title="No rank change">—</span>';
-}
-function decoratePlayerLeaderboardMovement(){
-  const table=document.querySelector('#ranktable table');
-  if(!table)return;
-  const comparison=powerMatchdayComparison();
-  const currentByName=new Map(powerRankings().map(p=>[p.name,p]));
-  table.querySelectorAll('tbody tr').forEach(tr=>{
-    const rankCell=tr.querySelector('td.rank');
-    if(!rankCell)return;
-    rankCell.querySelector('.leaderboard-rank-move')?.remove();
-    if(typeof sortKey!=='undefined'&&sortKey!=='power')return;
-    const playerLink=tr.querySelector('a[href^="#player/"]');
-    if(!playerLink)return;
-    let name;try{name=decodeURIComponent(playerLink.getAttribute('href').slice('#player/'.length));}catch{return;}
-    const current=currentByName.get(name),previous=comparison.previousByName.get(name);
-    if(!current)return;
-    rankCell.insertAdjacentHTML('beforeend',leaderboardRankMovementBadge(rankChange(current,previous)));
-  });
-}
-const leaderboardMovementObserver=new MutationObserver(()=>decoratePlayerLeaderboardMovement());
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const root=document.querySelector('#app');if(root)leaderboardMovementObserver.observe(root,{subtree:true,childList:true});decoratePlayerLeaderboardMovement();},{once:true});
-else{const root=document.querySelector('#app');if(root)leaderboardMovementObserver.observe(root,{subtree:true,childList:true});decoratePlayerLeaderboardMovement();}
