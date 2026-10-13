@@ -6,6 +6,8 @@ const LCC_SEASONS = {
 const seasonURL = new URL(location.href);
 const seasonKey = Object.hasOwn(LCC_SEASONS, seasonURL.searchParams.get('season')) ? seasonURL.searchParams.get('season') : '26-27';
 const activeSeason = LCC_SEASONS[seasonKey];
+// Apply before styles paint so archive links never flash the current season theme.
+document.documentElement.dataset.season = seasonKey;
 seasonURL.searchParams.set('season',seasonKey);
 history.replaceState(null,'',seasonURL);
 const LCC_PLAYER_ALIASES = {

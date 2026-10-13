@@ -1,0 +1,42 @@
+/* Season identity. Outcome colors (--green, .loss and form badges) stay semantic. */
+:root {
+  --bg:#080f20; --panel:#0e192c; --line:#253b58; --muted:#9bacc4;
+  --text:#ecf3ff; --accent:#3b82f6; --accent-bright:#22d3ee;
+  --lime:#69bcff; --surface:#122442; --sidebar:#0b1426;
+  --accent-line:#3266a0; --accent-wash:#3b82f61c; --glow:#22d3ee35;
+}
+:root[data-season="25-26"] {
+  --bg:#17120c; --panel:#211b12; --line:#463721; --muted:#bbae96;
+  --text:#faf2e4; --accent:#d4a843; --accent-bright:#f59e0b;
+  --lime:#e8be61; --surface:#302414; --sidebar:#1c160e;
+  --accent-line:#85672f; --accent-wash:#d4a8431c; --glow:#f59e0b35;
+}
+body {background:radial-gradient(ellipse at 90% 0,var(--accent-wash),transparent 55%),var(--bg);min-height:100vh}
+aside {background:var(--sidebar)}
+header {border-top:3px solid var(--accent);background:var(--sidebar)}
+nav a.active,nav a.active:hover {background:var(--surface);color:var(--lime);box-shadow:inset 3px 0 var(--accent)}
+nav a:hover,tbody tr:hover {background:var(--surface)}
+input,select,.btn,.lang-toggle {background:var(--surface);border-color:var(--line)}
+:focus-visible {outline:2px solid var(--accent-bright)}
+#season-select {background:var(--surface);border-color:var(--accent-line);color:var(--lime);font-weight:700;box-shadow:0 0 16px var(--accent-wash)}
+#season-select option {background:var(--sidebar);color:var(--text)}
+.season-context {color:var(--lime);border-left:3px solid var(--accent-bright);padding-left:10px}
+h1 {color:var(--lime)}
+.heroart {border-color:var(--accent-line);background:repeating-linear-gradient(135deg,transparent 0 20px,var(--accent-wash) 21px 22px),linear-gradient(110deg,var(--sidebar),var(--surface))}
+.heroart small,.heroart small::after {color:var(--muted)}
+.hero > div:not(.hero-video-layer):not(.heroart)::before,
+.hero > div:not(.hero-video-layer):not(.heroart)::after {background:var(--accent);opacity:.65}
+.stat,.card,.matchcard,.tablewrap,.profile-hero {border-color:var(--line)}
+.stat {border-top:2px solid var(--accent-line)}
+.card:hover,.matchcard:hover,.leader:hover,.leaderboard-card:hover {border-color:var(--accent)}
+.leader,.leader:nth-child(2),.leader:nth-child(3),.leaderboard-card {background:linear-gradient(130deg,var(--surface),var(--panel) 75%);border-color:var(--accent-line)}
+.leader small,.leaderboard-card-title {color:var(--muted)}
+th,#ranktable th:nth-child(2) {background:var(--surface);color:var(--lime)}
+td,.leaderboard-first {border-color:var(--line)}
+.leaderboard-live,.art-label {background:var(--surface);border-color:var(--accent-line);color:var(--lime)}
+.leaderboard-live i {box-shadow:0 0 12px var(--glow)}
+.leaderboard-card::after {background:var(--accent-wash)}
+.leaderboard-crown {text-shadow:0 0 14px var(--glow)}
+.leaderboard-winner .player-avatar-inline,.player-avatar-profile {border-color:var(--accent-line)}
+.champIcon,.champIcon-fallback {background:var(--surface);border-color:var(--line)}
+.pill {border-color:var(--line);color:var(--muted)}
