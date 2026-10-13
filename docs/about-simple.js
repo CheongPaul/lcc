@@ -5,7 +5,8 @@
     app.innerHTML = `<h1>League data</h1>
       <div class="prose">
         <h2>Current source</h2>
-        <p>Google Sheets.</p>
+        <p><a href="${LCC_SHEET_URL}" target="_blank" rel="noopener noreferrer">Google Sheets · Season ${activeSeason.label} ↗</a></p>
+        <p>${activeSeason.completeMatches?'Complete matches only.':'Valid recorded player appearances. Partial scoreboards are labeled. Two excluded players are omitted from all statistics. CC was not recorded and is shown as N/A.'}</p>
         <p>Data manually added by Paul Cheong. Website created by Paul Cheong.</p>
       </div>`;
   }

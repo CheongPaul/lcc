@@ -8,13 +8,13 @@
     {label:'Top Avg Damage', key:'damage', format:p=>n(p.damage)},
     {label:'Top Avg Gold', key:'gold', format:p=>n(p.gold)},
     {label:'Top CS', key:'cs', format:p=>n(p.cs,2)},
-    {label:'Top Avg Kill Contribution', key:'kp', format:p=>n(p.kp,2)+'%'},
+    {label:'Top Avg Kill Contribution', key:'kp', format:p=>percent(p.kp,2)},
     {label:'Top Vision', key:'vision', format:p=>n(p.vision,2)},
     {label:'Top CC', key:'cc', format:p=>n(p.cc)}
   ];
 
   function rankedPlayers(key) {
-    return [...players()].sort((a,b) => {
+    return players().filter(p=>p[key]!=null).sort((a,b) => {
       const av = Number(a[key]);
       const bv = Number(b[key]);
       if (bv !== av) return bv - av;
@@ -27,6 +27,7 @@
   }
 
   function leaderboardCard(category) {
+    if(category.key==='cc'&&!activeSeason.hasCC)return `<section class="leaderboard-card"><div class="leaderboard-card-title">Top CC</div><div class="empty"><strong>N/A</strong><p>Not recorded this season</p></div></section>`;
     const top = rankedPlayers(category.key);
     if (!top.length) return '';
     const first = top[0];

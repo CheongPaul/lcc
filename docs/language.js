@@ -9,7 +9,7 @@
     'THE LEAGUE':'리그 메뉴','Overview':'개요','Players':'선수','Leaderboard':'리더보드','Match history':'경기 기록','Champions':'챔피언',
     'League leaders':'리그의 대표들','Top three players across nine live season categories.':'각 분야별 탑 3',
     'Top KDA':'KDA','Top Kills':'킬','Top CS':'CS','Top Assists':'어시스트','Top Avg Kill Contribution':'평균 킬 관여율','Top Avg Damage':'평균 데미지','Top Avg Gold':'평균 골드','Top Vision':'시야','Top CC':'CC',
-    'Ten players. One league.':'10명의 선수. 하나의 리그.','About the data ↗':'데이터 정보 ↗','Season 26/27':'시즌 26/27',
+    'Ten players. One league.':'10명의 선수. 하나의 리그.','About the data ↗':'데이터 정보 ↗','Season 26/27':'시즌 26/27','Season 25/26':'시즌 25/26','25/26 archive: excluded players are omitted. Partial scoreboards contain recorded players only. Missing stats show N/A; averages and first-blood rates use recorded values only.':'25/26 기록: 제외된 선수는 통계에 포함되지 않습니다. 일부 스코어보드에는 기록이 있는 선수만 표시됩니다. 미기록 항목은 N/A로 표시하며, 평균과 퍼스트 블러드 확률은 기록된 값만으로 계산합니다.','Not recorded this season':'이번 시즌에 기록되지 않음','Partial scoreboard: totals below include displayed players only.':'일부 선수 기록만 표시됩니다. 아래 합계는 표시된 선수들의 기록만 포함합니다.',
     'Checking Google Sheets…':'Google Sheets 확인 중…','Refresh data ↻':'데이터 새로고침 ↻','Loading league statistics…':'리그 통계를 불러오는 중…',
     'Community competition · Unofficial fan project':'커뮤니티 대회 · 비공식 팬 프로젝트','The season, by the numbers':'숫자로 보는 이번 시즌',
     'Small league.\nBig plays.':'작은 리그.\n큰 플레이.','Your home for every player, pick, and performance.\nLeague of Legends Champions Chadwick · 2026–27':'모든 선수, 픽, 경기 기록을 한곳에서.\nLeague of Legends Champions Chadwick · 2026–27',
@@ -32,6 +32,8 @@
   }));
 
   const patterns = [
+    [/^Previous username: (.+)$/, '이전 닉네임: $1'],
+    [/^SEASON (.+)$/, '시즌 $1'],
     [/^Ranked by KDA$/, 'KDA 기준 순위'],[/^Ranked by (.+)$/, '$1 기준 순위'],
     [/^All (\d+) games\. Open a match to see the full scoreboard\.$/, '전체 $1경기 · 경기를 선택하면 전체 스코어보드를 볼 수 있습니다.'],
     [/^(\d+) champions available · (\d+) played · Pick counts are player appearances\.$/, '사용 가능 챔피언 $1개 · 사용된 챔피언 $2개 · 픽 수는 선수별 등장 횟수입니다.'],

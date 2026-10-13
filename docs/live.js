@@ -1,5 +1,5 @@
 // Public, read-only Google Sheets feed. No credentials or API key in the client.
-const LCC_SHEET_ID='1rmFSc8JZ4NT_7h14pc6CLkdG0Gi8GcSFLfRbh1nOSmM';
+const LCC_SHEET_ID=activeSeason.sheetId;
 const LCC_SHEET_URL=`https://docs.google.com/spreadsheets/d/${LCC_SHEET_ID}/edit`;
 let liveBusy=false,liveLastSuccess=null,liveSequence=0;
 function readSheet(name){return new Promise((resolve,reject)=>{
@@ -24,49 +24,53 @@ function sheetSeconds(cell){
 }
 function parsePlayerSheet(table,player){
  const fields={kills:'Kills',deaths:'Deaths',assists:'Assists',damage:'Damage Dealt',cs:'CS',gold:'Gold',vision:'Vision',firstBlood:'First Blood',win:'Win',teamKills:'Total Kills of Game',cc:'CC'};
+ if(!activeSeason.hasCC)delete fields.cc;
  const required=['Match ID','Game Time','Champion','Lane',...Object.values(fields)];
  if(required.some(k=>!table.cols.some(c=>c.label.trim()===k)))throw new Error('Player sheet columns changed');
  const result=[],pending=new Set();
  for(const cells of sheetRecords(table)){
   const id=cells['Match ID']?.v;if(id===null||id===undefined||id==='')continue;
   const match=String(id),seconds=sheetSeconds(cells['Game Time']);
-  const row={player,match,seconds,champion:cells.Champion?.v,lane:cells.Lane?.v};
-  for(const [key,label] of Object.entries(fields)){const value=cells[label]?.v;row[key]=value===null||value===undefined||value===''?NaN:Number(value)}
-  if(!/^\d{8}$/.test(match)||!Number.isFinite(seconds)||seconds<=0||!row.champion||!row.lane||Object.keys(fields).some(k=>!Number.isFinite(row[k])||row[k]<0)||![0,1].includes(row.win)||![0,1].includes(row.firstBlood)){pending.add(match);continue}
+  if(!activeSeason.completeMatches&&Object.values(fields).every(label=>cells[label]?.v==null||cells[label]?.v==='')&&!cells.Champion?.v)continue;
+  const row={player:canonicalPlayer(player),match,seconds,cc:null,champion:cells.Champion?.v,lane:cells.Lane?.v};
+  for(const [key,label] of Object.entries(fields)){const value=cells[label]?.v;row[key]=value===null||value===undefined||value===''?null:Number(value)}
+  if(!/^\d{8}$/.test(match)||!Number.isFinite(seconds)||seconds<=0||!row.champion||!row.lane||(activeSeason.completeMatches?Object.keys(fields):['kills','deaths','assists','win']).some(k=>!Number.isFinite(row[k])||row[k]<0)||![0,1].includes(row.win)||(row.firstBlood!==null&&![0,1].includes(row.firstBlood))){pending.add(match);continue}
+  for(const key of Object.keys(fields))if(!Number.isFinite(row[key])||row[key]<0)row[key]=null;
   const minute=seconds/60;
   for(const [key,label,total] of [['cspm','Cs per Min','cs'],['gpm','Gold Per Min','gold'],['dpm','Damage Per Min','damage'],['vpm','Vision Per Min','vision']]){
-   const cached=cells[label]?.v;row[key]=cached!==null&&cached!==undefined&&Number.isFinite(Number(cached))?Number(cached):row[total]/minute;
+   const cached=cells[label]?.v;row[key]=row[total]===null?null:cached!==null&&cached!==undefined&&Number.isFinite(Number(cached))?Number(cached):row[total]/minute;
   }
-  const kp=cells['Kill Contribution']?.v;row.kp=kp!==null&&kp!==undefined&&Number.isFinite(Number(kp))?Number(kp):row.teamKills?(row.kills+row.assists)/row.teamKills:0;
+  const kp=cells['Kill Contribution']?.v;row.kp=row.teamKills===null?null:kp!==null&&kp!==undefined&&Number.isFinite(Number(kp))?Number(kp):row.teamKills?(row.kills+row.assists)/row.teamKills:0;
   result.push(row);
  }
  return {rows:result,pending};
 }
+function seasonRoster(main){return sheetRecords(main).filter(r=>r['Player ID']?.v&&!activeSeason.excluded.includes(String(r['Player ID'].v)))}
 function assembleLive(main,tables){
- const records=sheetRecords(main).filter(r=>r['Player ID']?.v),players=records.map(r=>String(r['Player ID'].v));
- if(players.length!==10||new Set(players).size!==10)throw new Error('Expected ten unique players in Main');
+ const records=seasonRoster(main),players=records.map(r=>String(r['Player ID'].v));
+ if(!players.length||new Set(players.map(canonicalPlayer)).size!==players.length||(activeSeason.completeMatches&&players.length!==10))throw new Error('Invalid player roster in Main');
  const parsed=tables.map((table,i)=>parsePlayerSheet(table,players[i])),pending=new Set(parsed.flatMap(p=>[...p.pending]));
  const all=parsed.flatMap(p=>p.rows),byMatch=Object.groupBy(all,r=>r.match);let complete=[];
  for(const [id,match] of Object.entries(byMatch)){
-  if(pending.has(id)||match.length!==10||new Set(match.map(r=>r.player)).size!==10||match.filter(r=>r.win===1).length!==5||new Set(match.map(r=>r.seconds)).size!==1){pending.add(id);continue}
+  if(new Set(match.map(r=>r.player)).size!==match.length||(activeSeason.completeMatches&&(pending.has(id)||match.length!==10||match.filter(r=>r.win===1).length!==5||new Set(match.map(r=>r.seconds)).size!==1))){pending.add(id);continue}
   complete.push(...match);
  }
  if(!complete.length)throw new Error('No complete matches available');
- return {source:'Google Sheets',season:'2026–27',ratings:Object.fromEntries(records.map(r=>[String(r['Player ID'].v),r['Top Rating']?.v??'Unlisted'])),rows:complete.sort((a,b)=>a.match.localeCompare(b.match)||a.player.localeCompare(b.player)),pendingMatches:pending.size};
+ return {source:'Google Sheets',season:activeSeason.year,ratings:Object.fromEntries(records.map(r=>[canonicalPlayer(String(r['Player ID'].v)),r['Top Rating']?.v??'Unlisted'])),rows:complete.sort((a,b)=>a.match.localeCompare(b.match)||a.player.localeCompare(b.player)),pendingMatches:pending.size};
 }
-function liveStatus(message,state){const target=document.querySelector('#live-status');if(target){target.textContent=message;target.dataset.state=state}const button=document.querySelector('#refresh-live');if(button)button.disabled=liveBusy}
+function liveStatus(message,state){const target=document.querySelector('#live-status');if(target){target.textContent=`Season ${activeSeason.label} · ${message}`;target.dataset.state=state}const button=document.querySelector('#refresh-live');if(button)button.disabled=liveBusy}
 function liveTime(){return liveLastSuccess?.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
 async function refreshLive(){
  if(liveBusy)return;liveBusy=true;liveStatus('Checking Google Sheets…','checking');
  try{
-  const main=await readSheet('Main'),names=sheetRecords(main).filter(r=>r['Player ID']?.v).map(r=>String(r['Player ID'].v));
-  if(names.length!==10)throw new Error('Expected ten player tabs');
-  const tables=await Promise.all(names.map(readSheet)),fresh=assembleLive(main,tables);
+  const main=await readSheet('Main'),names=seasonRoster(main).map(r=>String(r['Player ID'].v));
+  if(!names.length||(activeSeason.completeMatches&&names.length!==10))throw new Error('Expected ten player tabs');
+  const tables=await Promise.all(names.map(name=>readSheet(name))),fresh=assembleLive(main,tables);
   const changed=JSON.stringify(fresh.rows)!==JSON.stringify(rows)||JSON.stringify(fresh.ratings)!==JSON.stringify(data.ratings)||data.source!=='Google Sheets';
   data=fresh;rows=fresh.rows;liveLastSuccess=new Date();
   if(changed){const y=window.scrollY;const inputs={};for(const id of ['search','role','matchsearch','champsearch','champsort']){const input=document.getElementById(id);if(input)inputs[id]=input.value}route();for(const [id,value] of Object.entries(inputs)){const input=document.getElementById(id);if(input)input.value=value}for(const id of ['search','matchsearch','champsearch']){const input=document.getElementById(id);if(input?.oninput)input.oninput({target:input})}window.scrollTo(0,y)}
-  liveStatus(`Google Sheets · Checked ${liveTime()}${fresh.pendingMatches?' · '+fresh.pendingMatches+' incomplete match(es) excluded':''}`,'live');
- }catch(error){liveStatus(liveLastSuccess?`Update unavailable · Showing last sync at ${liveTime()}`:'Google Sheets unavailable · Showing uploaded workbook snapshot','offline')}
+  liveStatus(`Google Sheets · Checked ${liveTime()}${fresh.pendingMatches?' · '+fresh.pendingMatches+(activeSeason.completeMatches?' incomplete match(es) excluded':' match(es) with missing or invalid records'):''}`,'live');
+ }catch(error){liveStatus(liveLastSuccess?`Update unavailable · Showing last sync at ${liveTime()}`:'Google Sheets unavailable · Showing this season’s saved snapshot','offline')}
  finally{liveBusy=false;const button=document.querySelector('#refresh-live');if(button)button.disabled=false}
 }
 function startLive(){document.querySelector('#refresh-live').onclick=refreshLive;refreshLive();setInterval(()=>{if(!document.hidden)refreshLive()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLive()})}
