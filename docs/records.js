@@ -7,18 +7,20 @@
     return { value, rows:eligible.filter(r => Number(r[key]) === value) };
   }
 
-  function fastestMatchRecord() {
+  function matchDurationRecord(mode='min') {
     const byMatch = new Map();
     for (const r of rows) {
       const seconds = Number(r.seconds);
       if (!r.match || !Number.isFinite(seconds) || seconds <= 0) continue;
       if (!byMatch.has(r.match)) byMatch.set(r.match, { id:r.match, seconds, rows:[] });
       byMatch.get(r.match).rows.push(r);
-      if (seconds < byMatch.get(r.match).seconds) byMatch.get(r.match).seconds = seconds;
+      byMatch.get(r.match).seconds = seconds;
     }
     const list = [...byMatch.values()];
     if (!list.length) return { value:null, matches:[] };
-    const value = Math.min(...list.map(m => m.seconds));
+    const value = mode === 'max'
+      ? Math.max(...list.map(m => m.seconds))
+      : Math.min(...list.map(m => m.seconds));
     return { value, matches:list.filter(m => m.seconds === value) };
   }
 
@@ -50,12 +52,12 @@
     return `<article class="record-card${bg?' has-champion-art':''}">${bg}<div class="record-card-content"><div class="record-eyebrow">${eyebrow}</div><h2>${title}</h2><strong class="record-value">${record.value==null?'—':formatter(record.value)}</strong>${body}</div></article>`;
   }
 
-  function fastestCard(record) {
+  function matchRecordCard(title, record) {
     const body = record.matches.length ? record.matches.map(m => {
       const players = m.rows.length;
       return `<div class="record-holder"><a class="record-player" href="${link('match',m.id)}">Match ${esc(m.id)} ↗</a><span class="record-meta">${date(m.id)} · ${players} players</span></div>`;
     }).join('') : '<div class="record-empty">No recorded data.</div>';
-    return `<article class="record-card record-card-wide"><div class="record-card-content"><div class="record-eyebrow">MATCH RECORD</div><h2>Fastest ended game</h2><strong class="record-value">${record.value==null?'—':duration(record.value)}</strong>${body}</div></article>`;
+    return `<article class="record-card record-card-wide"><div class="record-card-content"><div class="record-eyebrow">MATCH RECORD</div><h2>${title}</h2><strong class="record-value">${record.value==null?'—':duration(record.value)}</strong>${body}</div></article>`;
   }
 
   function renderRecords() {
@@ -63,8 +65,11 @@
     const assists = maxRecord('assists');
     const damage = maxRecord('damage');
     const cs = maxRecord('cs');
-    const fastest = fastestMatchRecord();
-    app.innerHTML = `<div class="eyebrow">Season records</div><h1>Record book</h1><p class="sub"><span>The biggest single-game performances and fastest finish.</span> · <span>Season ${activeSeason.label}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','COMBAT RECORD',kills)}${playerRecordCard('Most assists in one game','TEAMPLAY RECORD',assists)}${playerRecordCard('Most damage in one game','DAMAGE RECORD',damage)}${playerRecordCard('Most CS in one game','FARM RECORD',cs)}${fastestCard(fastest)}</div>`;
+    const kp = maxRecord('kp');
+    const cc = activeSeason.hasCC ? maxRecord('cc') : { value:null, rows:[] };
+    const fastest = matchDurationRecord('min');
+    const longest = matchDurationRecord('max');
+    app.innerHTML = `<div class="eyebrow">Season records</div><h1>Record book</h1><p class="sub"><span>The biggest single-game performances and match-duration records.</span> · <span>Season ${activeSeason.label}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','COMBAT RECORD',kills)}${playerRecordCard('Most assists in one game','TEAMPLAY RECORD',assists)}${playerRecordCard('Highest kill participation in one game','TEAM IMPACT RECORD',kp,v=>percent(v*100,1))}${playerRecordCard('Most CC in one game','CONTROL RECORD',cc)}${playerRecordCard('Most damage in one game','DAMAGE RECORD',damage)}${playerRecordCard('Most CS in one game','FARM RECORD',cs)}${matchRecordCard('Fastest ended game',fastest)}${matchRecordCard('Longest game',longest)}</div>`;
   }
 
   const baseRoute = route;
