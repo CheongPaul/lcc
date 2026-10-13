@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -40,5 +42,6 @@ jobs:
             echo "No profile icon changes to commit."
           else
             git commit -m "Update Riot player profile icons"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
