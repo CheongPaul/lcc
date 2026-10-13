@@ -30,8 +30,16 @@
     const champion = record.rows?.[0]?.champion;
     const id = champion && championArt[champion];
     if (!id) return '';
-    const url = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(id)}_0.jpg`;
-    return `<img class="record-bg" src="${url}" alt="" aria-hidden="true">`;
+
+    // Prefer the cached splash files served by this GitHub Pages site. They are
+    // already stored in docs/images/champions, so this avoids cross-origin/CDN
+    // image failures. External sources are only fallbacks.
+    const local = `images/champions/${encodeURIComponent(id)}.jpg`;
+    const cdragonId = id.toLowerCase();
+    const community = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${encodeURIComponent(cdragonId)}/skins/skin0/images/${encodeURIComponent(cdragonId)}_splash_centered_0.jpg`;
+    const riot = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(id)}_0.jpg`;
+
+    return `<img class="record-bg" src="${local}" alt="" aria-hidden="true" data-community="${community}" data-riot="${riot}" onerror="if(!this.dataset.triedCommunity){this.dataset.triedCommunity='1';this.src=this.dataset.community}else if(!this.dataset.triedRiot){this.dataset.triedRiot='1';this.src=this.dataset.riot}else{this.onerror=null;this.style.display='none'}">`;
   }
 
   function playerRecordCard(title, eyebrow, record, formatter=n) {
