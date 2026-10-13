@@ -38,3 +38,4 @@ jobs:
             git commit -m "Cache champion artwork [skip ci]"
             git push
           fi
+# Updating this workflow intentionally re-runs the cache job from the latest main branch.
