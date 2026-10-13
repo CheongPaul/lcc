@@ -4,11 +4,11 @@
   const leaderboardCategories = [
     {label:'Top KDA', key:'kda', format:p=>p.games?(p.deaths?n(p.kda,2):'Perfect'):'—'},
     {label:'Top Kills', key:'kills', format:p=>n(p.kills)},
-    {label:'Top CS', key:'cs', format:p=>n(p.cs,2)},
     {label:'Top Assists', key:'assists', format:p=>n(p.assists)},
-    {label:'Top Avg Kill Contribution', key:'kp', format:p=>n(p.kp,2)+'%'},
     {label:'Top Avg Damage', key:'damage', format:p=>n(p.damage)},
     {label:'Top Avg Gold', key:'gold', format:p=>n(p.gold)},
+    {label:'Top CS', key:'cs', format:p=>n(p.cs,2)},
+    {label:'Top Avg Kill Contribution', key:'kp', format:p=>n(p.kp,2)+'%'},
     {label:'Top Vision', key:'vision', format:p=>n(p.vision,2)},
     {label:'Top CC', key:'cc', format:p=>n(p.cc)}
   ];
