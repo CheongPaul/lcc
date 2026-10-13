@@ -102,24 +102,23 @@ for i, riot_id in enumerate(players, start=1):
         summoner = get_json(summoner_url)
         icon_id = int(summoner["profileIconId"])
 
-        # Pull the current Ranked Solo/Duo entry. Keep only public rank fields.
+        # Riot removed the old league entries-by-summoner flow in favour of PUUID.
+        # Query ranked entries directly by PUUID and keep Solo/Duo only.
+        league_url = (
+            "https://kr.api.riotgames.com/lol/league/v4/entries/by-puuid/"
+            f"{quote(puuid, safe='')}"
+        )
+        entries = get_json(league_url)
+        solo = next((e for e in entries if e.get("queueType") == "RANKED_SOLO_5x5"), None)
         solo_queue = None
-        summoner_id = summoner.get("id")
-        if summoner_id:
-            league_url = (
-                "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
-                f"{quote(summoner_id, safe='')}"
-            )
-            entries = get_json(league_url)
-            solo = next((e for e in entries if e.get("queueType") == "RANKED_SOLO_5x5"), None)
-            if solo:
-                solo_queue = {
-                    "tier": solo.get("tier"),
-                    "rank": solo.get("rank"),
-                    "leaguePoints": solo.get("leaguePoints"),
-                    "wins": solo.get("wins"),
-                    "losses": solo.get("losses"),
-                }
+        if solo:
+            solo_queue = {
+                "tier": solo.get("tier"),
+                "rank": solo.get("rank"),
+                "leaguePoints": solo.get("leaguePoints"),
+                "wins": solo.get("wins"),
+                "losses": solo.get("losses"),
+            }
 
         slug = hashlib.sha1(riot_id.encode("utf-8")).hexdigest()[:16]
         filename = f"{slug}.png"
