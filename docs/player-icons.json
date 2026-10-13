@@ -77,10 +77,10 @@
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "SILVER",
-      "rank": "I",
-      "leaguePoints": 34,
+      "rank": "II",
+      "leaguePoints": 87,
       "wins": 52,
-      "losses": 52
+      "losses": 54
     }
   },
   "이거진짜#KRI": {
@@ -97,13 +97,13 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 395,
+    "summonerLevel": 396,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 52,
-      "wins": 177,
+      "leaguePoints": 70,
+      "wins": 178,
       "losses": 170
     }
   }
