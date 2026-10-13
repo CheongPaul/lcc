@@ -1,0 +1,44 @@
+name: Update Riot player profile icons
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_player_profile_icons.py"
+      - "docs/data.json"
+      - ".github/workflows/update-player-profile-icons.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-player-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch Riot profile icons
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+        run: python scripts/update_player_profile_icons.py
+
+      - name: Commit cached player icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/player-icons.json docs/images/player-icons
+          if git diff --cached --quiet; then
+            echo "No profile icon changes to commit."
+          else
+            git commit -m "Update Riot player profile icons"
+            git push
+          fi
