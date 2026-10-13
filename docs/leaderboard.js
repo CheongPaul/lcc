@@ -1,6 +1,3 @@
-(() => {
-  const baseRoute = route;
-
   const leaderboardCategories = [
     {label:'Top KDA', key:'kda', format:p=>p.games?(p.deaths?n(p.kda,2):'Perfect'):'—'},
     {label:'Top Kills', key:'kills', format:p=>n(p.kills)},
@@ -20,6 +17,22 @@
       if (bv !== av) return bv - av;
       return a.name.localeCompare(b.name);
     }).slice(0,3);
+  }
+
+  // Shuffle once per page load; live updates refresh winners without shuffling cards.
+  const standoutOrder = [...leaderboardCategories];
+  for (let i = standoutOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [standoutOrder[i], standoutOrder[j]] = [standoutOrder[j], standoutOrder[i]];
+  }
+  function seasonStandoutCards() {
+    return standoutOrder
+      .filter(category => !(category.key === 'cc' && !activeSeason.hasCC))
+      .map(category => ({category, first:rankedPlayers(category.key)[0]}))
+      .filter(item => item.first)
+      .slice(0,3)
+      .map(({category, first}) => `<a class="leader" href="${link('player',first.name)}"><small>${esc(category.label)} ↗</small><h3>${displayName(first.name)}</h3><strong>${category.format(first)}</strong></a>`)
+      .join('');
   }
 
   function displayName(name) {
@@ -57,11 +70,11 @@
       <div class="note">Updates from the same live match data as the rest of the site. Rankings refresh whenever Google Sheets refreshes.</div>`;
   }
 
+  const leaderboardBaseRoute = route;
   route = function() {
     const [page='overview'] = location.hash.slice(1).split('/');
-    if (page !== 'leaderboard') return baseRoute();
+    if (page !== 'leaderboard') return leaderboardBaseRoute();
     document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.hash==='#leaderboard'));
     renderLeaderboard();
     window.scrollTo(0,0);
   };
-})();
