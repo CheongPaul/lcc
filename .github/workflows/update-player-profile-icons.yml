@@ -3,7 +3,7 @@ name: Update Riot player profile icons
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 18 * * *"
+    - cron: "17 * * * *"
   push:
     branches: [main]
     paths:
@@ -28,20 +28,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch Riot profile icons
+      - name: Fetch Riot profile icons and solo queue ranks
         env:
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
         run: python scripts/update_player_profile_icons.py
 
-      - name: Commit cached player icons
+      - name: Commit cached Riot player data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/player-icons.json docs/images/player-icons
           if git diff --cached --quiet; then
-            echo "No profile icon changes to commit."
+            echo "No Riot player data changes to commit."
           else
-            git commit -m "Update Riot player profile icons"
+            git commit -m "Update Riot player profile icons and solo queue ranks"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
