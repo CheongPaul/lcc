@@ -1,10 +1,10 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 const root=require('path').join(__dirname,'../docs/');
 for(const season of ['25-26','26-27']){
- const nodes={};const node=id=>nodes[id]??=( {innerHTML:'',textContent:'',value:id==='champsort'?'games':'',dataset:{},addEventListener(){},classList:{toggle(){},remove(){}}});
+ const nodes={};const node=id=>nodes[id]??=( {innerHTML:'',textContent:'',value:id==='champsort'?'games':'',dataset:{},querySelector(){return null},setAttribute(){},focus(){},addEventListener(){},classList:{toggle(){},remove(){}}});
  const document={querySelector:s=>node(s.slice(1)),getElementById:node,querySelectorAll:()=>[],documentElement:{dataset:{}},addEventListener(){}};
  const context=vm.createContext({document,URL,URLSearchParams,location:{href:`https://cheongpaul.github.io/lcc/?season=${season}`,hash:'#overview'},history:{replaceState(){}},addEventListener(){},window:{scrollTo(){}},fetch:()=>new Promise(()=>{}),console});
- for(const file of ['seasons.js','live.js','champion-art.js','app.js','leaderboard.js','about-simple.js'])vm.runInContext(fs.readFileSync(root+file,'utf8'),context);
+ for(const file of ['seasons.js','live.js','champion-art.js','app.js','leaderboard.js','about-simple.js','compare.js'])vm.runInContext(fs.readFileSync(root+file,'utf8'),context);
  context.fixture=JSON.parse(fs.readFileSync(root+(season==='25-26'?'data-25-26.json':'data.json')));
  vm.runInContext('data=normalizeSeasonData(fixture);rows=data.rows',context);
  const allRows=vm.runInContext('rows',context);
@@ -18,6 +18,19 @@ for(const season of ['25-26','26-27']){
  assert.equal(cards,vm.runInContext('seasonStandoutCards()',context));
  for(const category of selected){context.categoryKey=category.key;const winner=vm.runInContext('rankedPlayers(categoryKey)[0]',context);assert(cards.includes('#player/'+encodeURIComponent(winner.name)));assert(cards.includes(category.label));}
  if(season==='25-26')assert(!selected.some(c=>c.key==='cc'));
+ const names=[...new Set(allRows.map(r=>r.player))];
+ context.compareNames=names;
+ const url=vm.runInContext('comparisonURL(compareNames[0],compareNames[1])',context);
+ assert(new URL(url).searchParams.get('season')===season);
+ assert.equal(decodeURIComponent(new URL(url).hash.split('/')[2]),names[1]);
+ context.location.hash='#compare/'+encodeURIComponent(names[0])+'/'+encodeURIComponent(names[1]);
+ vm.runInContext('route()',context);
+ assert.match(nodes.app.innerHTML,/Player comparison/);assert.match(nodes.app.innerHTML,/Average damage/);assert.match(nodes.app.innerHTML,/ \/ min/);
+ assert(document.title.includes(names[0])&&document.title.includes(names[1]));
+ if(season==='25-26')assert.match(nodes.app.innerHTML,/Total CC<\/th><td>N\/A<\/td><td>N\/A/);
+ node('compare-a').value=names[0];node('compare-b').value=names[0];nodes['compare-update'].onclick();assert.equal(nodes['compare-error'].hidden,false);
+ context.location.hash='#compare/%ZZ/missing';vm.runInContext('route()',context);assert.match(nodes.app.innerHTML,/Choose two different players/);
+ context.location.hash='#player/'+encodeURIComponent(names[0]);vm.runInContext('route()',context);assert.match(nodes.app.innerHTML,/target="_blank" rel="noopener noreferrer"/);assert.match(nodes.app.innerHTML,/Compare player/);
  const routes=['overview','players','leaderboard','matches','champions','about','player/'+encodeURIComponent('가 타 카#1997'),'player/'+encodeURIComponent('Hip to be Square#Fore'),'champion/Ahri','champion/Aatrox','match/'+context.fixture.rows[0].match];
  for(const route of routes){context.location.hash='#'+route;vm.runInContext('route();updateSeasonContext()',context);assert(nodes.app.innerHTML.length>10);assert(!/NaN|undefined|null|N\/A%/.test(nodes.app.innerHTML),route);assert(document.title.includes(season.replace('-','/')));if(season==='25-26')assert(!nodes.app.innerHTML.includes('26/27'),route)}
  if(season==='25-26'){
