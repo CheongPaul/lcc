@@ -85,3 +85,31 @@ function powerRankingSummary(){
 }
 
 function powerProfileSummary(name){const p=powerRankings().find(p=>p.name===name);if(!p)return '';return `<section class="power-profile"><div><span class="eyebrow">Power ranking</span><strong>${n(p.score,1)} <small>/ 100</small></strong></div><div><span>Season rank</span><strong>${p.rank==null?'—':'#'+p.rank}</strong></div><div class="power-flags">${powerFlags(p)}</div></section>`;}
+
+function leaderboardRankMovementBadge(value){
+  if(value==null)return '<span class="leaderboard-rank-move new" title="No previous matchday">—</span>';
+  if(value>0)return `<span class="leaderboard-rank-move up" title="Up ${value} since previous matchday">▲${value}</span>`;
+  if(value<0)return `<span class="leaderboard-rank-move down" title="Down ${Math.abs(value)} since previous matchday">▼${Math.abs(value)}</span>`;
+  return '<span class="leaderboard-rank-move same" title="No rank change">—</span>';
+}
+function decoratePlayerLeaderboardMovement(){
+  const table=document.querySelector('#ranktable table');
+  if(!table)return;
+  const comparison=powerMatchdayComparison();
+  const currentByName=new Map(powerRankings().map(p=>[p.name,p]));
+  table.querySelectorAll('tbody tr').forEach(tr=>{
+    const rankCell=tr.querySelector('td.rank');
+    if(!rankCell)return;
+    rankCell.querySelector('.leaderboard-rank-move')?.remove();
+    if(typeof sortKey!=='undefined'&&sortKey!=='power')return;
+    const playerLink=tr.querySelector('a[href^="#player/"]');
+    if(!playerLink)return;
+    let name;try{name=decodeURIComponent(playerLink.getAttribute('href').slice('#player/'.length));}catch{return;}
+    const current=currentByName.get(name),previous=comparison.previousByName.get(name);
+    if(!current)return;
+    rankCell.insertAdjacentHTML('beforeend',leaderboardRankMovementBadge(rankChange(current,previous)));
+  });
+}
+const leaderboardMovementObserver=new MutationObserver(()=>decoratePlayerLeaderboardMovement());
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const root=document.querySelector('#app');if(root)leaderboardMovementObserver.observe(root,{subtree:true,childList:true});decoratePlayerLeaderboardMovement();},{once:true});
+else{const root=document.querySelector('#app');if(root)leaderboardMovementObserver.observe(root,{subtree:true,childList:true});decoratePlayerLeaderboardMovement();}
