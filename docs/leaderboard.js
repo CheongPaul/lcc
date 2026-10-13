@@ -2,11 +2,11 @@
     {label:'Top KDA', key:'kda', format:p=>p.games?(p.deaths?n(p.kda,2):'Perfect'):'—'},
     {label:'Top Kills', key:'kills', format:p=>n(p.kills)},
     {label:'Top Assists', key:'assists', format:p=>n(p.assists)},
-    {label:'Top Avg Damage', key:'damage', format:p=>n(p.damage)},
-    {label:'Top Avg Gold', key:'gold', format:p=>n(p.gold)},
-    {label:'Top CS', key:'cs', format:p=>n(p.cs,2)},
+    {label:'Top Avg Damage', key:'damage', format:p=>p.damage==null?'N/A':n(p.damage)+' / min'},
+    {label:'Top Avg Gold', key:'gold', format:p=>p.gold==null?'N/A':n(p.gold)+' / min'},
+    {label:'Top CS', key:'cs', format:p=>p.cs==null?'N/A':n(p.cs,2)+' / min'},
     {label:'Top Avg Kill Contribution', key:'kp', format:p=>percent(p.kp,2)},
-    {label:'Top Vision', key:'vision', format:p=>n(p.vision,2)},
+    {label:'Top Vision', key:'vision', format:p=>p.vision==null?'N/A':n(p.vision,2)+' / min'},
     {label:'Top CC', key:'cc', format:p=>n(p.cc)}
   ];
 
