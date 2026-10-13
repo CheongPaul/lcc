@@ -103,7 +103,7 @@
   function updateToggle() {
     const button = document.querySelector('#language-toggle');
     if (!button) return;
-    button.textContent = lang === 'ko' ? 'EN' : '한국어';
+    button.textContent = lang === 'ko' ? 'English' : '한국어';
     button.setAttribute('aria-label', lang === 'ko' ? 'Switch to English' : '한국어로 전환');
     button.title = lang === 'ko' ? 'Switch to English' : '한국어로 전환';
     document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
