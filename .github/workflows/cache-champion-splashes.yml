@@ -1,4 +1,4 @@
-name: Cache champion splash images
+name: Cache champion artwork
 
 on:
   workflow_dispatch:
@@ -24,17 +24,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Download champion splash images
+      - name: Download champion splash images and icons
         run: python scripts/download_champion_splashes.py
 
-      - name: Commit cached images
+      - name: Commit cached artwork
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/images/champions
+          git add docs/images/champions docs/images/champion-icons
           if git diff --cached --quiet; then
             echo "No image changes to commit."
           else
-            git commit -m "Cache champion splash images [skip ci]"
+            git commit -m "Cache champion artwork [skip ci]"
             git push
           fi
