@@ -6,7 +6,9 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
-    'THE LEAGUE':'리그 메뉴','Overview':'개요','Players':'선수','Match history':'경기 기록','Champions':'챔피언',
+    'THE LEAGUE':'리그 메뉴','Overview':'개요','Players':'선수','Leaderboard':'리더보드','Match history':'경기 기록','Champions':'챔피언',
+    'Top three players across nine live season categories.':'각 분야별 탑 3',
+    'Top KDA':'KDA','Top Kills':'킬','Top CS':'CS','Top Assists':'어시스트','Top Avg Kill Contribution':'평균 킬 관여율','Top Avg Damage':'평균 데미지','Top Avg Gold':'평균 골드','Top Vision':'시야','Top CC':'CC',
     'Ten players. One league.':'10명의 선수. 하나의 리그.','About the data ↗':'데이터 정보 ↗','Season 26/27':'시즌 26/27',
     'Checking Google Sheets…':'Google Sheets 확인 중…','Refresh data ↻':'데이터 새로고침 ↻','Loading league statistics…':'리그 통계를 불러오는 중…',
     'Community competition · Unofficial fan project':'커뮤니티 대회 · 비공식 팬 프로젝트','The season, by the numbers':'숫자로 보는 이번 시즌',
