@@ -1,0 +1,40 @@
+name: Cache champion splash images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/download_champion_splashes.py"
+      - "docs/champion-art.js"
+      - ".github/workflows/cache-champion-splashes.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cache-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download champion splash images
+        run: python scripts/download_champion_splashes.py
+
+      - name: Commit cached images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/images/champions
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Cache champion splash images [skip ci]"
+            git push
+          fi
