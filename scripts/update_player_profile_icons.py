@@ -102,6 +102,25 @@ for i, riot_id in enumerate(players, start=1):
         summoner = get_json(summoner_url)
         icon_id = int(summoner["profileIconId"])
 
+        # Pull the current Ranked Solo/Duo entry. Keep only public rank fields.
+        solo_queue = None
+        summoner_id = summoner.get("id")
+        if summoner_id:
+            league_url = (
+                "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
+                f"{quote(summoner_id, safe='')}"
+            )
+            entries = get_json(league_url)
+            solo = next((e for e in entries if e.get("queueType") == "RANKED_SOLO_5x5"), None)
+            if solo:
+                solo_queue = {
+                    "tier": solo.get("tier"),
+                    "rank": solo.get("rank"),
+                    "leaguePoints": solo.get("leaguePoints"),
+                    "wins": solo.get("wins"),
+                    "losses": solo.get("losses"),
+                }
+
         slug = hashlib.sha1(riot_id.encode("utf-8")).hexdigest()[:16]
         filename = f"{slug}.png"
         target = OUT_DIR / filename
@@ -114,8 +133,10 @@ for i, riot_id in enumerate(players, start=1):
             "profileIconId": icon_id,
             "summonerLevel": summoner.get("summonerLevel"),
             "image": f"images/player-icons/{filename}",
+            "soloQueue": solo_queue,
         }
-        print(f"[{i}/{len(players)}] saved {riot_id} -> {filename} (icon {icon_id})")
+        rank_label = "Unranked" if not solo_queue else f"{solo_queue['tier']} {solo_queue['rank']} {solo_queue['leaguePoints']} LP"
+        print(f"[{i}/{len(players)}] saved {riot_id} -> {filename} (icon {icon_id}; solo {rank_label})")
     except Exception as exc:
         failed.append(riot_id)
         print(f"[{i}/{len(players)}] failed {riot_id}: {exc}")
@@ -125,7 +146,7 @@ MAP_FILE.write_text(
     encoding="utf-8",
 )
 
-print(f"Updated {len(players) - len(failed)} of {len(players)} Riot profile icons")
+print(f"Updated {len(players) - len(failed)} of {len(players)} Riot player records")
 if failed:
     print("Failed players:")
     for player in failed:
@@ -134,4 +155,4 @@ if failed:
 # Keep successful/cached results even if a few lookups fail. Fail only if nothing is usable.
 usable = sum(1 for p in players if p in result and result[p].get("image"))
 if usable == 0:
-    raise SystemExit("No player profile icons could be resolved")
+    raise SystemExit("No player Riot records could be resolved")
