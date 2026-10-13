@@ -1,8 +1,8 @@
 /* Season identity. Outcome colors (--green, .loss and form badges) stay semantic. */
 :root {
-  --bg:#080f20; --panel:#0e192c; --line:#253b58; --muted:#9bacc4;
+  --bg:#17120c; --panel:#211b12; --line:#463721; --muted:#9bacc4;
   --text:#ecf3ff; --accent:#3b82f6; --accent-bright:#22d3ee;
-  --lime:#69bcff; --surface:#122442; --sidebar:#0b1426;
+  --lime:#69bcff; --surface:#302414; --sidebar:#1c160e;
   --accent-line:#3266a0; --accent-wash:#3b82f61c; --glow:#22d3ee35;
 }
 :root[data-season="25-26"] {
@@ -11,7 +11,7 @@
   --lime:#e8be61; --surface:#302414; --sidebar:#1c160e;
   --accent-line:#85672f; --accent-wash:#d4a8431c; --glow:#f59e0b35;
 }
-body {background:radial-gradient(ellipse at 90% 0,var(--accent-wash),transparent 55%),var(--bg);min-height:100vh}
+body {background:radial-gradient(ellipse at 90% 0,#d4a8431c,transparent 55%),var(--bg);min-height:100vh}
 aside {background:var(--sidebar)}
 header {border-top:3px solid var(--accent);background:var(--sidebar)}
 nav a.active,nav a.active:hover {background:var(--surface);color:var(--lime);box-shadow:inset 3px 0 var(--accent)}
