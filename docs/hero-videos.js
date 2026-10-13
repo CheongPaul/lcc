@@ -4,6 +4,7 @@
   let currentId = null;
   let queue = [];
   let apiRequested = false;
+  let pendingRandomSeek = true;
 
   function shuffle(ids) {
     const a = [...ids];
@@ -22,6 +23,28 @@
     const next = queue.shift();
     currentId = next;
     return next;
+  }
+
+  function randomStartSeconds(target) {
+    const duration = Number(target.getDuration?.()) || 0;
+    if (duration <= 20) return 0;
+    const min = Math.min(5, Math.max(0, duration - 1));
+    const max = Math.max(min, duration - 15);
+    return Math.floor(min + Math.random() * (max - min));
+  }
+
+  function seekRandomly(target) {
+    const duration = Number(target.getDuration?.()) || 0;
+    if (!duration) return false;
+    target.seekTo(randomStartSeconds(target), true);
+    pendingRandomSeek = false;
+    return true;
+  }
+
+  function loadNextRandom(target) {
+    pendingRandomSeek = true;
+    target.loadVideoById(nextVideoId());
+    target.mute();
   }
 
   function ensureApi() {
@@ -55,6 +78,7 @@
       player = null;
     }
 
+    pendingRandomSeek = true;
     player = new YT.Player(mount, {
       videoId: nextVideoId(),
       playerVars: {
@@ -72,17 +96,19 @@
         onReady: (event) => {
           event.target.mute();
           event.target.playVideo();
+          setTimeout(() => seekRandomly(event.target), 300);
         },
         onStateChange: (event) => {
+          if (event.data === YT.PlayerState.PLAYING && pendingRandomSeek) {
+            seekRandomly(event.target);
+          }
           if (event.data === YT.PlayerState.ENDED) {
-            event.target.loadVideoById(nextVideoId());
-            event.target.mute();
+            loadNextRandom(event.target);
           }
         },
         onError: (event) => {
           try {
-            event.target.loadVideoById(nextVideoId());
-            event.target.mute();
+            loadNextRandom(event.target);
           } catch (_) {}
         }
       }
