@@ -6,6 +6,7 @@
 .profile-splash{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% 30%;z-index:-3}
 .profile-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,14,18,.94),rgba(9,14,18,.63) 48%,rgba(9,14,18,.1)),linear-gradient(0deg,rgba(9,14,18,.88),transparent 80%);z-index:-2}
 .profile-content{padding:36px;max-width:100%;text-shadow:0 2px 18px #000}
+.profile-content>.eyebrow{position:relative;top:-10px}
 .profile-content h1{font-size:clamp(30px,4vw,58px);text-transform:none;overflow-wrap:anywhere;max-width:950px}
 .profile-content p{color:#d0d9df;line-height:1.6}
 .art-label{display:inline-block;margin-top:14px;padding:9px 12px;border:1px solid #9aaf7066;background:#101810b3;border-radius:4px;font-size:10px;letter-spacing:1px;color:var(--lime)}
