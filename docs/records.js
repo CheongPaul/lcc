@@ -26,18 +26,20 @@
     return `<div class="record-holder"><a class="record-player" href="${link('player',r.player)}">${parts(r.player)}</a><span class="record-meta"><a href="${link('champion',r.champion)}">${esc(r.champion)}</a> · <a href="${link('match',r.match)}">Match ${esc(r.match)} ↗</a></span></div>`;
   }
 
-  function championBackground(record) {
+  function championBackgroundStyle(record) {
     const champion = record.rows?.[0]?.champion;
     const id = champion && championArt[champion];
-    return id ? `<img class="record-bg" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(id)}_0.jpg" alt="" aria-hidden="true" loading="lazy">` : '';
+    if (!id) return '';
+    const url = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(id)}_0.jpg`;
+    return ` style="--record-champion-bg:url('${url}')"`;
   }
 
   function playerRecordCard(title, eyebrow, record, formatter=n) {
     const body = record.rows.length
       ? record.rows.map(recordHolder).join('')
       : '<div class="record-empty">No recorded data.</div>';
-    const bg = championBackground(record);
-    return `<article class="record-card${bg?' has-champion-art':''}">${bg}<div class="record-card-content"><div class="record-eyebrow">${eyebrow}</div><h2>${title}</h2><strong class="record-value">${record.value==null?'—':formatter(record.value)}</strong>${body}</div></article>`;
+    const bgStyle = championBackgroundStyle(record);
+    return `<article class="record-card${bgStyle?' has-champion-art':''}"${bgStyle}><div class="record-card-content"><div class="record-eyebrow">${eyebrow}</div><h2>${title}</h2><strong class="record-value">${record.value==null?'—':formatter(record.value)}</strong>${body}</div></article>`;
   }
 
   function fastestCard(record) {
