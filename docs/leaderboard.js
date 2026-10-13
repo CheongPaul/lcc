@@ -51,7 +51,7 @@
 
   function renderLeaderboard() {
     app.innerHTML = `<div class="eyebrow">League leaders</div>
-      <div class="leaderboard-heading"><div><h1>Leaderboard</h1><p class="sub">Top three players across nine live season categories.</p></div><span class="leaderboard-live"><i></i> LIVE · GOOGLE SHEETS</span></div>
+      <div class="leaderboard-heading"><div><h1>Leaderboard</h1><p class="sub">Top three players across nine live season categories.</p></div></div>
       <div class="leaderboard-grid">${leaderboardCategories.map(leaderboardCard).join('')}</div>
       <div class="note">Updates from the same live match data as the rest of the site. Rankings refresh whenever Google Sheets refreshes.</div>`;
   }
