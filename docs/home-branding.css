@@ -1,8 +1,8 @@
-.hero > div:not(.hero-video-layer):not(.heroart){min-height:300px;position:relative;z-index:2;background:url('https://raw.githubusercontent.com/CheongPaul/lcc/main/6acda41a7ec5a.png') left center/340px auto no-repeat!important}
+.hero > div:not(.hero-video-layer):not(.heroart){min-height:300px;position:relative;z-index:2;background:url('https://raw.githubusercontent.com/CheongPaul/lcc/main/6acda41a7ec5a.png') left center/220px auto no-repeat!important}
 .hero > div:not(.hero-video-layer):not(.heroart)>*{display:none!important}
 .heroart{position:relative;z-index:2}
 .heroart b{font-size:0}
 .heroart b::after{content:'26/27';font:800 italic 74px 'Barlow Condensed',sans-serif;color:var(--lime)}
 .heroart small{font-size:0}
 .heroart small::after{content:'LoL Champions Chadwick';font-size:9px;letter-spacing:2.5px;color:#c2d4a8;white-space:nowrap;display:block}
-@media(max-width:760px){.hero > div:not(.hero-video-layer):not(.heroart){min-height:220px;background-position:center!important;background-size:220px auto!important}.heroart small::after{font-size:9px}}
+@media(max-width:760px){.hero > div:not(.hero-video-layer):not(.heroart){min-height:220px;background-position:center!important;background-size:170px auto!important}.heroart small::after{font-size:9px}}
