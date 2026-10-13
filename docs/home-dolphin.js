@@ -6,7 +6,7 @@
     if (!left || left.querySelector('.dolphin-mascot')) return;
     const img = document.createElement('img');
     img.className = 'dolphin-mascot';
-    img.src = 'dolphin-logo.svg';
+    img.src = window.DOLPHIN_DATA_URI || 'dolphin-logo.svg';
     img.alt = 'Chadwick dolphin mascot';
     img.decoding = 'async';
     left.appendChild(img);
