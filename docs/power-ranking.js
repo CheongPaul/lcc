@@ -50,8 +50,38 @@ function calculatePowerRankings(records) {
   return ranked.map((p,i)=>{const displayed=p.score==null?null:p.score.toFixed(1);if(displayed!==last)rank=i+1;last=displayed;return {...p,rank:p.score==null?null:rank};});
 }
 function powerRankings(){return calculatePowerRankings(rows);}
+function matchdayKey(record){const id=String(record?.match??'');const m=id.match(/^(\d{6})/);return m?m[1]:null;}
+function powerMatchdayComparison(){
+  const days=[...new Set(rows.map(matchdayKey).filter(Boolean))].sort();
+  if(days.length<2)return {latest:days.at(-1)||null,previous:null,previousRankings:[],previousByName:new Map()};
+  const latest=days.at(-1),previous=days.at(-2);
+  const previousRecords=rows.filter(r=>{const day=matchdayKey(r);return day&&day<=previous;});
+  const previousRankings=calculatePowerRankings(previousRecords);
+  return {latest,previous,previousRankings,previousByName:new Map(previousRankings.map(p=>[p.name,p]))};
+}
+function formatMatchday(day){return day&&day.length===6?`20${day.slice(0,2)}.${day.slice(2,4)}.${day.slice(4,6)}`:'—';}
+function powerChange(current,previous){
+  if(!previous||current?.score==null||previous.score==null)return null;
+  return Math.round((current.score-previous.score)*10)/10;
+}
+function rankChange(current,previous){
+  if(!previous||current?.rank==null||previous.rank==null)return null;
+  return previous.rank-current.rank;
+}
+function changeClass(value){return value==null?'new':value>0?'up':value<0?'down':'same';}
+function scoreChangeBadge(value){if(value==null)return '<span class="power-change new">—</span>';const sign=value>0?'+':'';return `<span class="power-change ${changeClass(value)}">${sign}${value.toFixed(1)}</span>`;}
+function rankChangeBadge(value){if(value==null)return '<span class="rank-change new">—</span>';const sign=value>0?'+':'';return `<span class="rank-change ${changeClass(value)}">${sign}${value}</span>`;}
 function powerFlags(p){return `${p.provisional?'<span class="pill">Provisional</span>':''}${p.limited?'<span class="pill">Limited data</span>':''}`;}
-function powerStandoutCards(){const roster=new Map(players().map(p=>[p.name,p]));return powerRankings().filter(p=>p.score!=null).slice(0,3).map(p=>{const lane=roster.get(p.name)?.lane;return `<a class="leader power-leader" href="${link('player',p.name)}"><span class="ghost">${String(p.rank).padStart(2,'0')}</span>${laneIcon(lane,'power-lane-icon')}<small>POWER RANKING ↗</small><h3>${esc(p.name.split('#')[0])}</h3><strong>${n(p.score,1)}<span>/ 100</span></strong><div class="power-flags">${powerFlags(p)}</div></a>`;}).join('');}
-function powerRankingSummary(){return `<details class="power-details"><summary>All power rankings & scoring</summary><div class="tablewrap"><table><thead><tr><th>Rank</th><th>Player</th><th>Power score</th><th>Games played</th><th>Data status</th></tr></thead><tbody>${powerRankings().map(p=>`<tr><td>${p.rank??'—'}</td><td><a href="${link('player',p.name)}">${esc(p.name)}</a></td><td class="lime">${n(p.score,1)} / 100</td><td>${p.scoredGames} / ${p.games}</td><td>${powerFlags(p)||'—'}</td></tr>`).join('')}</tbody></table></div><p>Power v1: each game is compared with the same season and role. KDA 25%, kill participation 25%, damage/min 20%, gold/min 15%, vision/min 15%. Tied values share their average percentile; a single record scores 50. Zero-death KDA uses (kills + assists) / max(deaths, 1).</p><p>Base score = (scored games × average game score + 5 × 50) / (scored games + 5). Displayed score = 50 + 1.5 × (base score − 50), limited to 0–100. Missing metrics redistribute their weights; games with no usable metrics are excluded. Under 5 scored games is provisional. Limited data means a role metric has fewer than 5 records or 2 players, or a game has under 80% metric coverage. Equal scores to one decimal share a rank. Scores are relative to each season.</p></details>`;}
+function powerStandoutCards(){
+  const roster=new Map(players().map(p=>[p.name,p])),comparison=powerMatchdayComparison();
+  return powerRankings().filter(p=>p.score!=null).slice(0,3).map(p=>{
+    const lane=roster.get(p.name)?.lane,previous=comparison.previousByName.get(p.name),delta=powerChange(p,previous);
+    return `<a class="leader power-leader" href="${link('player',p.name)}"><span class="ghost">${String(p.rank).padStart(2,'0')}</span>${laneIcon(lane,'power-lane-icon')}<small>POWER RANKING ↗</small><h3>${esc(p.name.split('#')[0])}</h3><div class="power-score-line"><strong>${n(p.score,1)}<span>/ 100</span></strong>${scoreChangeBadge(delta)}</div><div class="power-flags">${powerFlags(p)}</div></a>`;
+  }).join('');
+}
+function powerRankingSummary(){
+  const current=powerRankings(),comparison=powerMatchdayComparison();
+  return `<details class="power-details"><summary>All power rankings & scoring</summary><div class="power-comparison-note">${comparison.previous?`Changes are compared with the standings after ${formatMatchday(comparison.previous)}.`:'No previous matchday is available yet.'}</div><div class="tablewrap"><table><thead><tr><th>Rank</th><th>Rank change</th><th>Player</th><th>Power score</th><th>Power change</th><th>Games played</th><th>Data status</th></tr></thead><tbody>${current.map(p=>{const previous=comparison.previousByName.get(p.name);return `<tr><td>${p.rank??'—'}</td><td>${rankChangeBadge(rankChange(p,previous))}</td><td><a href="${link('player',p.name)}">${esc(p.name)}</a></td><td class="lime">${n(p.score,1)} / 100</td><td>${scoreChangeBadge(powerChange(p,previous))}</td><td>${p.scoredGames} / ${p.games}</td><td>${powerFlags(p)||'—'}</td></tr>`;}).join('')}</tbody></table></div><p>Power v1: each game is compared with the same season and role. KDA 25%, kill participation 25%, damage/min 20%, gold/min 15%, vision/min 15%. Tied values share their average percentile; a single record scores 50. Zero-death KDA uses (kills + assists) / max(deaths, 1).</p><p>Base score = (scored games × average game score + 5 × 50) / (scored games + 5). Displayed score = 50 + 1.5 × (base score − 50), limited to 0–100. Missing metrics redistribute their weights; games with no usable metrics are excluded. Under 5 scored games is provisional. Limited data means a role metric has fewer than 5 records or 2 players, or a game has under 80% metric coverage. Equal scores to one decimal share a rank. Scores are relative to each season.</p></details>`;
+}
 
 function powerProfileSummary(name){const p=powerRankings().find(p=>p.name===name);if(!p)return '';return `<section class="power-profile"><div><span class="eyebrow">Power ranking</span><strong>${n(p.score,1)} <small>/ 100</small></strong></div><div><span>Season rank</span><strong>${p.rank==null?'—':'#'+p.rank}</strong></div><div class="power-flags">${powerFlags(p)}</div></section>`;}
