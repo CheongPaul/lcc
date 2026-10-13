@@ -38,6 +38,7 @@
     [/^(\d+) players picked this champion$/, '$1명의 선수가 이 챔피언을 선택했습니다'],[/^(\d+) picks · (.+) KDA$/, '$1회 픽 · KDA $2'],
     [/^(\d+) games$/, '$1경기'],[/^(\d+) players$/, '$1명'],[/^(\d+) kills$/, '$1킬'],[/^Match (.+)$/, '경기 $1'],
     [/^MAIN CHAMPION · (.+) · (\d+) games ↗$/, '주 챔피언 · $1 · $2경기 ↗'],[/^(.+) · Peak rank: (.+)$/, '$1 · 최고 티어: $2'],
+    [/^(.+) · Solo Queue: (.+)$/, '$1 · 솔로 랭크: $2'],
     [/^(.+) win rate$/, '승률 $1'],[/^Google Sheets connected · Complete matches only · Checks every 60 seconds\.$/, 'Google Sheets 연결됨 · 완료된 경기만 반영 · 60초마다 확인합니다.'],
     [/^Uploaded workbook snapshot · Waiting for Google Sheets\.$/, '업로드된 워크북 데이터 · Google Sheets 연결을 기다리는 중입니다.'],[/^Latest match: (.+)\.$/, '최근 경기: $1.']
   ];
