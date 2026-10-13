@@ -98,6 +98,7 @@
       }
     }
     decorateProfile();
+    decorateRanks();
   });
 
   async function init() {
