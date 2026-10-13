@@ -25,7 +25,7 @@
     const j = Math.floor(Math.random() * (i + 1));
     [standoutOrder[i], standoutOrder[j]] = [standoutOrder[j], standoutOrder[i]];
   }
-  function seasonStandoutCards() {
+  function randomSeasonStandoutCards() {
     return standoutOrder
       .filter(category => !(category.key === 'cc' && !activeSeason.hasCC))
       .map(category => ({category, first:rankedPlayers(category.key)[0]}))
@@ -78,3 +78,6 @@
     renderLeaderboard();
     window.scrollTo(0,0);
   };
+
+// Random category cards are retained but paused.
+function seasonStandoutCards(){return powerStandoutCards();}
