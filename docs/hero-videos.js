@@ -46,15 +46,6 @@
     return document.querySelector('.hero .hero-video-mount');
   }
 
-  function hideInitialUiMask() {
-    const mask = document.querySelector('.hero-video-ui-mask');
-    if (!mask) return;
-    setTimeout(() => {
-      mask.classList.add('is-hidden');
-      setTimeout(() => mask.remove(), 500);
-    }, 5600);
-  }
-
   function mountPlayer() {
     const mount = getMount();
     if (!mount || !(window.YT && window.YT.Player)) return;
@@ -81,7 +72,6 @@
         onReady: (event) => {
           event.target.mute();
           event.target.playVideo();
-          hideInitialUiMask();
         },
         onStateChange: (event) => {
           if (event.data === YT.PlayerState.ENDED) {
@@ -111,10 +101,6 @@
     const mount = document.createElement('div');
     mount.className = 'hero-video-mount';
     layer.appendChild(mount);
-
-    const mask = document.createElement('div');
-    mask.className = 'hero-video-ui-mask';
-    layer.appendChild(mask);
 
     hero.prepend(layer);
     ensureApi();
