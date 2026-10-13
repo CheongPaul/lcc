@@ -15,7 +15,9 @@
   }
 
   function soloRankFor(player) {
-    const solo = icons[canonicalPlayer(player)]?.soloQueue;
+    const entry = icons[canonicalPlayer(player)];
+    if (!entry) return 'N/A';
+    const solo = entry.soloQueue;
     if (!solo?.tier || !solo?.rank) return 'Unranked';
     const tier = String(solo.tier).charAt(0) + String(solo.tier).slice(1).toLowerCase();
     const lp = Number.isFinite(Number(solo.leaguePoints)) ? ` · ${solo.leaguePoints} LP` : '';
@@ -71,17 +73,21 @@
       content.dataset.playerIconApplied = '1';
     }
 
-    const subtitle = content.querySelector('p');
-    if (activeSeason.hasCC && subtitle && subtitle.dataset.soloRankApplied !== '1') {
-      const role = (subtitle.textContent || '').split(' · ')[0].trim();
-      subtitle.textContent = `${role} · Solo Queue: ${soloRankFor(player)}`;
-      subtitle.dataset.soloRankApplied = '1';
-    }
+  }
+
+  function decorateRanks() {
+    if (!ready) return;
+    document.querySelectorAll('[data-current-rank]').forEach(el => {
+      if (el.dataset.soloRankApplied === '1') return;
+      el.textContent = soloRankFor(el.dataset.currentRank);
+      el.dataset.soloRankApplied = '1';
+    });
   }
 
   function decorate(root=document) {
     decoratePlayerLinks(root);
     decorateProfile();
+    decorateRanks();
   }
 
   const observer = new MutationObserver(mutations => {

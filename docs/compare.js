@@ -30,7 +30,7 @@ detail = function(type, name) {
 function comparisonProfile(p) {
   const main=mainChampion(p.list);
   const pool=Object.entries(group(p.list,'champion')).map(([name,list])=>stats(list,name)).sort((a,b)=>b.games-a.games||b.wr-a.wr).slice(0,3);
-  return `<article class="compare-profile">${main?splash(main.name):''}<div class="compare-profile-copy"><a href="${link('player',p.name)}"><h2>${esc(p.name)}</h2></a><p><span>${esc(p.lane||'—')}</span> · ${esc(data.ratings[p.name]||'Unlisted')}</p><div class="compare-main"><span>Main champion</span>: <b>${esc(main?.name||'—')}</b></div><div class="compare-pool"><span>Top champions</span>: ${pool.map(c=>`<a href="${link('champion',c.name)}">${esc(c.name)} (${c.games})</a>`).join(' · ')}</div><div class="compare-form"><span>Last 5</span>${form(p.list)}</div></div></article>`;
+  return `<article class="compare-profile">${main?splash(main.name):''}<div class="compare-profile-copy"><a href="${link('player',p.name)}"><h2>${esc(p.name)}</h2></a><p><span>${esc(p.lane||'—')}</span> · <span>Current solo rank</span>: <span data-current-rank="${esc(p.name)}">N/A</span></p><div class="compare-main"><span>Main champion</span>: <b>${esc(main?.name||'—')}</b></div><div class="compare-pool"><span>Top champions</span>: ${pool.map(c=>`<a href="${link('champion',c.name)}">${esc(c.name)} (${c.games})</a>`).join(' · ')}</div><div class="compare-form"><span>Last 5</span>${form(p.list)}</div></div></article>`;
 }
 function comparisonValue(value, other, formatted, lowerIsBetter=false) {
   if(value==null || other==null || !(lowerIsBetter ? value<other : value>other))return formatted;
