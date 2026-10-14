@@ -10,17 +10,18 @@
   try { savedVolume = localStorage.getItem('lcc-music-volume'); } catch {}
   audio.volume = savedVolume !== null && savedVolume !== undefined && Number.isFinite(Number(savedVolume))
     ? Math.min(1, Math.max(0, Number(savedVolume))) : 0.3;
-  let enabled = false, bag = [], current = -1, failures = 0, request = 0;
+  let enabled = true, waitingForGesture = false, bag = [], current = -1, failures = 0, request = 0;
+  try { enabled = localStorage.getItem('lcc-music-enabled') !== 'off'; } catch {}
   let section, toggle, slider, output, title, status, next;
   let message = 'off';
   const copy = {
     en:{label:'Background music',hint:'10 songs · shuffled playback',volume:'Volume',next:'Next song',
       off:'Turn on to play music.',loading:'Loading music…',playing:'Playing',paused:'Paused',
-      blocked:'Playback paused. Turn music on to resume.',error:'Music unavailable. Check your connection and try again.',
+      blocked:'Music is ON. Tap anywhere to start playback.',error:'Music unavailable. Check your connection and try again.',
       ready:'Choose music ON to start.'},
     ko:{label:'배경음악',hint:'10곡 · 랜덤 재생',volume:'볼륨',next:'다음 곡',
       off:'음악을 켜면 재생됩니다.',loading:'음악 불러오는 중…',playing:'재생 중',paused:'일시정지',
-      blocked:'재생이 멈췄습니다. 음악을 다시 켜 주세요.',error:'음악을 불러오지 못했습니다. 연결을 확인하고 다시 시도해 주세요.',
+      blocked:'음악이 켜져 있습니다. 화면을 터치하면 재생됩니다.',error:'음악을 불러오지 못했습니다. 연결을 확인하고 다시 시도해 주세요.',
       ready:'음악을 켜서 시작하세요.'}
   };
   function render() {
@@ -50,10 +51,11 @@
     return bag.pop();
   }
   function stop(reason = 'off') {
-    enabled = false; request++; audio.pause(); message = reason; render();
+    enabled = false; waitingForGesture = false; request++; audio.pause(); message = reason; render();
   }
   async function play(change = false) {
     const id = ++request;
+    waitingForGesture = false;
     enabled = true;
     if (change || current < 0) { current = pick(); audio.src = tracks[current].src; }
     message = 'loading'; render();
@@ -63,7 +65,7 @@
       failures = 0; message = 'playing'; render();
     } catch (error) {
       if (id !== request || !enabled) return;
-      if (error.name === 'NotAllowedError') stop('blocked');
+      if (error.name === 'NotAllowedError') { waitingForGesture = true; message = 'blocked'; render(); }
       else if (error.name !== 'AbortError') failed();
     }
   }
@@ -89,7 +91,10 @@
     output = section.querySelector('output'); title = section.querySelector('.music-track');
     status = section.querySelector('.music-status'); next = section.querySelector('.music-next');
     slider.value = Math.round(audio.volume * 100);
-    toggle.addEventListener('click', () => { if (enabled) stop(); else { failures = 0; play(); } });
+    toggle.addEventListener('click', () => {
+      if (enabled) stop(); else { failures = 0; play(); }
+      try { localStorage.setItem('lcc-music-enabled', enabled ? 'on' : 'off'); } catch {}
+    });
     next.addEventListener('click', () => { failures = 0; play(true); });
     slider.addEventListener('input', () => {
       audio.volume = Number(slider.value) / 100;
@@ -103,4 +108,11 @@
     const observer = new MutationObserver(() => {if (mount()) observer.disconnect();});
     observer.observe(document.body, {childList:true});
   }
+  function resumeAfterGesture(event) {
+    if (!enabled || !waitingForGesture || event.target?.closest?.('.music-settings')) return;
+    play();
+  }
+  document.addEventListener('click', resumeAfterGesture);
+  document.addEventListener('keydown', resumeAfterGesture);
+  if (enabled) play();
 })();
