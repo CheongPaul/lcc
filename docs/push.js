@@ -1,12 +1,29 @@
 import { firebaseConfig, vapidKey } from './firebase-config.js';
 
 const preference = 'lcc-pom-push';
-const bar = document.createElement('section');
-bar.className = 'pwa-install-bar push-bar';
-bar.setAttribute('aria-label', 'POM notifications');
-bar.innerHTML = '<div><strong>POM notifications</strong><p id="push-status" role="status"></p></div><button type="button" class="btn" id="push-toggle"></button>';
-document.querySelector('.livebar').before(bar);
-const button = bar.querySelector('button'), status = bar.querySelector('p');
+const settingsButton = document.createElement('button');
+settingsButton.type = 'button';
+settingsButton.className = 'settings-button';
+settingsButton.setAttribute('aria-labelledby', 'settings-button-label');
+settingsButton.setAttribute('aria-haspopup', 'dialog');
+settingsButton.setAttribute('aria-controls', 'lcc-settings');
+settingsButton.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m9 3-.6 2.2-1.8 1L4.4 6l-2 3.5L4 11v2l-1.6 1.5 2 3.5 2.2-.2 1.8 1L9 21h6l.6-2.2 1.8-1 2.2.2 2-3.5L20 13v-2l1.6-1.5-2-3.5-2.2.2-1.8-1L15 3Z"/><circle cx="12" cy="12" r="3.3"/></svg><span id="settings-button-label" class="settings-sr-only">Settings</span>';
+document.querySelector('.header-actions').append(settingsButton);
+const settings = document.createElement('dialog');
+settings.id = 'lcc-settings';
+settings.className = 'settings-dialog';
+settings.setAttribute('aria-labelledby', 'settings-title');
+settings.innerHTML = '<h2 id="settings-title">Settings</h2><div class="settings-row"><div><strong id="push-label">POM notifications</strong><p>New match POM alerts on this device.</p></div><button type="button" class="push-switch" id="push-toggle" role="switch" aria-labelledby="push-label" aria-describedby="push-status"></button></div><p id="push-status" class="settings-status" role="status"></p><button type="button" class="btn settings-close">Close</button>';
+document.body.append(settings);
+settingsButton.addEventListener('click', () => settings.showModal());
+settings.querySelector('.settings-close').addEventListener('click', () => settings.close());
+settings.addEventListener('close', () => settingsButton.focus());
+settings.addEventListener('click', event => {
+  if (event.target !== settings) return;
+  const rect = settings.getBoundingClientRect();
+  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) settings.close();
+});
+const button = settings.querySelector('#push-toggle'), status = settings.querySelector('#push-status');
 let enabled = localStorage.getItem(preference) === 'on', busy = false, sdkPromise;
 const copy = {
   off: 'Get a notification when a new match POM is announced.',
@@ -20,9 +37,10 @@ const copy = {
 };
 function render(message = enabled ? 'on' : 'off') {
   // Replace text nodes so the existing translation observer receives fresh English source.
-  button.textContent = busy ? 'Please wait…' : enabled ? 'Turn off POM alerts' : 'Get POM alerts';
+  button.textContent = enabled ? 'ON' : 'OFF';
   button.disabled = busy;
-  button.setAttribute('aria-pressed', String(enabled));
+  button.setAttribute('aria-checked', String(enabled));
+  button.setAttribute('aria-busy', String(busy));
   status.textContent = copy[message];
 }
 function loadSDK() {

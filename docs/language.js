@@ -6,6 +6,10 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'Settings':'설정',
+    'New match POM alerts on this device.':'이 기기에서 새 경기의 POM 알림을 받습니다.',
+    'ON':'켜짐',
+    'OFF':'꺼짐',
     'An internet connection is required for statistics. Enable POM alerts separately on this device.':'통계를 보려면 인터넷 연결이 필요합니다. POM 알림은 이 기기에서 별도로 켜 주세요.',
     "POM notifications":"POM 알림",
     "Get a notification when a new match POM is announced.":"새 경기의 POM이 발표되면 알림을 받아보세요.",
