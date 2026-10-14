@@ -1,0 +1,18 @@
+.power-chart{margin:24px 0 30px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.power-chart .sectionhead{margin:0 0 14px}
+.power-chart-legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;font-weight:700}
+.power-chart-score-label{color:#35d6d1;fill:#35d6d1}.power-chart-rank-label{color:#82aaff;fill:#82aaff}
+.power-chart-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+.power-chart svg{display:block;width:100%;height:300px;font:11px Inter,sans-serif;fill:var(--muted)}
+.power-chart-grid{stroke:var(--line);stroke-width:1}
+.power-chart-score-line{stroke:#35d6d1;stroke-width:2.5;fill:none}
+.power-chart-rank-line{stroke:#82aaff;stroke-width:2;stroke-dasharray:6 4;fill:none}
+.power-chart-score-dot{fill:#35d6d1;stroke:var(--panel);stroke-width:1.5}
+.power-chart-rank-dot{fill:#82aaff;stroke:var(--panel);stroke-width:1.5}
+.power-chart-hit{fill:transparent}.power-chart-point{cursor:pointer;outline:none}
+.power-chart-point:hover .power-chart-hit,.power-chart-point:focus .power-chart-hit,.power-chart-point.selected .power-chart-hit{fill:#ffffff0b;stroke:#ffffff30}
+.power-chart-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.power-chart-controls label{display:flex;align-items:center;gap:10px}.power-chart-select{min-height:44px}
+.power-chart-readout{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 0 0;margin-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.power-chart-readout a,.power-chart-readout b{color:var(--text)}
+@media(max-width:760px){.power-chart{padding:14px}.power-chart .sectionhead h2{font-size:20px}.power-chart-readout{gap:12px}}

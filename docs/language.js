@@ -6,6 +6,14 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'Power ranking journey':'경기별 파워랭킹 추이',
+    'Power score · left axis':'파워랭킹 점수 · 왼쪽 축',
+    'Season rank · right axis':'시즌 순위 · 오른쪽 축',
+    'Cumulative standings after each league match, including matches you did not play. Rank 1 is at the top. The two axes use different scales.':'리그의 각 경기까지 반영한 누적 점수·순위입니다. 미출전 경기도 포함하며, 순위는 위쪽이 1위입니다. 두 축의 단위는 서로 다릅니다.',
+    'League match':'리그 경기',
+    'Tap a point or choose a match. Scroll sideways to see all matches.':'점을 누르거나 경기를 선택하세요. 좌우로 스크롤하면 모든 경기를 볼 수 있습니다.',
+    'Played':'출전',
+    'Did not play':'미출전',
     'Daily power history':'일별 파워랭킹 변화',
     'Date':'날짜',
     'Power change':'점수 변동',
