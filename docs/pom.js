@@ -115,4 +115,31 @@
     const impact = app.querySelector('.impact-stats');
     if (impact) impact.insertAdjacentHTML('beforeend', stat('POM awards', pomAwardCount(name)));
   };
+
+  function latestPomCard() {
+    const matchIds = [...new Set(rows.map(r => String(r.match || '')).filter(Boolean))].sort().reverse();
+    const match = matchIds.find(id => pomWinnerForMatch(id));
+    if (!match) return '';
+    const pom = pomWinnerForMatch(match);
+    const r = pom.record;
+    const champId = championArt[r.champion];
+    const local = champId ? `images/champions/${encodeURIComponent(champId)}.jpg` : '';
+    const community = champId ? `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${encodeURIComponent(champId.toLowerCase())}/skins/skin0/images/${encodeURIComponent(champId.toLowerCase())}_splash_centered_0.jpg` : '';
+    const riot = champId ? `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(champId)}_0.jpg` : '';
+    const art = champId ? `<img class="latest-pom-bg" src="${local}" alt="" aria-hidden="true" data-community="${community}" data-riot="${riot}" onerror="if(!this.dataset.triedCommunity){this.dataset.triedCommunity='1';this.src=this.dataset.community}else if(!this.dataset.triedRiot){this.dataset.triedRiot='1';this.src=this.dataset.riot}else{this.onerror=null;this.style.display='none'}">` : '';
+    const kp = Number.isFinite(Number(r.kp)) ? `${n(Number(r.kp)*100,1)}%` : 'N/A';
+    return `<section class="latest-pom-section"><div class="sectionhead"><h2>Recent match POM</h2><span class="pill">Match ${esc(match)}</span></div><article class="latest-pom-card">${art}<div class="latest-pom-shade"></div><div class="latest-pom-content"><div class="latest-pom-copy"><div class="eyebrow">PLAYER OF MATCH</div><h3><a href="${link('player',r.player)}">${esc(String(r.player).split('#')[0])}</a></h3><div class="latest-pom-champion"><a href="${link('champion',r.champion)}">${esc(r.champion)}</a><span>·</span><span>${esc(r.lane)}</span></div><a class="latest-pom-match" href="${link('match',match)}">Open match ↗</a></div><div class="latest-pom-stats"><div class="latest-pom-stat"><span>K / D / A</span><strong>${n(r.kills)} / ${n(r.deaths)} / ${n(r.assists)}</strong></div><div class="latest-pom-stat"><span>Kill participation</span><strong>${kp}</strong></div><div class="latest-pom-stat"><span>Damage</span><strong>${n(r.damage)}</strong></div><div class="latest-pom-stat"><span>CS</span><strong>${n(r.cs)}</strong></div><div class="latest-pom-stat power"><span>Game power</span><strong>${n(pom.score,1)}</strong></div></div></div></article></section>`;
+  }
+
+  const baseOverview = overview;
+  overview = function() {
+    baseOverview();
+    const html = latestPomCard();
+    if (!html) return;
+    const anchor = app.querySelector('.matchup-section') || app.querySelector('.note');
+    const bottom = app.querySelector('.bottomgrid');
+    if (anchor) anchor.insertAdjacentHTML('afterend', html);
+    else if (bottom) bottom.insertAdjacentHTML('beforebegin', html);
+    else app.insertAdjacentHTML('beforeend', html);
+  };
 })();
