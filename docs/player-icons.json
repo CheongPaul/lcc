@@ -55,14 +55,14 @@
   },
   "더불어만진당구속#멸공멸공": {
     "profileIconId": 5635,
-    "summonerLevel": 459,
+    "summonerLevel": 460,
     "image": "images/player-icons/85b4b7609a779866.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "I",
-      "leaguePoints": 13,
+      "rank": "II",
+      "leaguePoints": 72,
       "wins": 171,
-      "losses": 168
+      "losses": 170
     }
   },
   "루카리오파동탄#KR1": {
