@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Check KR_8419495991 without saving or notifying
+      - name: Compare Riot endpoints without saving or notifying
         env:
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
         run: |
@@ -20,6 +20,27 @@ jobs:
           key = os.environ.get('RIOT_API_KEY', '').strip()
           if not key:
               raise SystemExit('RIOT_API_KEY is missing; match access could not be tested.')
+          import re
+          print('DIAGNOSTIC key format valid:', bool(re.fullmatch(r'RGAPI-[0-9a-fA-F-]{36}', key)))
+          probes = {
+              'platform-status': 'https://kr.api.riotgames.com/lol/status/v4/platform-data',
+              'custom-match': 'https://asia.api.riotgames.com/lol/match/v5/matches/KR_8416287729',
+          }
+          for label, endpoint in probes.items():
+              try:
+                  req = urllib.request.Request(endpoint, headers={'X-Riot-Token': key})
+                  with urllib.request.urlopen(req, timeout=20) as res:
+                      payload = json.load(res)
+                  print('DIAGNOSTIC', label, 'HTTP 200', 'participants:', len(payload.get('info', {}).get('participants', [])))
+              except urllib.error.HTTPError as error:
+                  try:
+                      message = json.loads(error.read()).get('status', {}).get('message', '')
+                  except (ValueError, AttributeError):
+                      message = 'Non-JSON error response'
+                  message = re.sub(r'RGAPI-[A-Za-z0-9-]+', '[REDACTED]', str(message).replace(key, '[REDACTED]'))
+                  print('DIAGNOSTIC', label, 'HTTP', error.code, message[:200])
+              except (urllib.error.URLError, TimeoutError):
+                  print('DIAGNOSTIC', label, 'network error')
           url = 'https://asia.api.riotgames.com/lol/match/v5/matches/KR_8419495991'
           request = urllib.request.Request(url, headers={'X-Riot-Token': key})
           try:
@@ -41,6 +62,12 @@ jobs:
                       'position': p.get('teamPosition')} for p in participants]}, ensure_ascii=False))
           except urllib.error.HTTPError as error:
               print('MATCH_LOOKUP HTTP', error.code)
+              try:
+                  message = json.loads(error.read()).get('status', {}).get('message', '')
+              except (ValueError, AttributeError):
+                  message = 'Non-JSON error response'
+              message = re.sub(r'RGAPI-[A-Za-z0-9-]+', '[REDACTED]', str(message).replace(key, '[REDACTED]'))
+              print('DIAGNOSTIC normal-match:', message[:200])
               print({403: 'Key denied or expired; match availability is inconclusive.',
                      401: 'Authentication failed; match availability is inconclusive.',
                      404: 'Match not found or unavailable through this API.',
