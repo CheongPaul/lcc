@@ -10,6 +10,37 @@
     return { value, rows:eligible.filter(r => Number(r[key]) === value) };
   }
 
+  // Same raw per-game Power score used by the POM system, but across every player/game.
+  function maxGamePowerRecord() {
+    const rolePools = new Map();
+    for (const r of rows) {
+      if (!['Top','Jungle','Mid','ADC','Support'].includes(r.lane)) continue;
+      if (!rolePools.has(r.lane)) rolePools.set(r.lane, POWER_METRICS.map(() => []));
+      POWER_METRICS.forEach((metric, i) => {
+        const value = metric.value(r);
+        if (Number.isFinite(value)) rolePools.get(r.lane)[i].push(value);
+      });
+    }
+    for (const pools of rolePools.values()) for (const pool of pools) pool.sort((a,b) => a-b);
+
+    const scored = [];
+    for (const r of rows) {
+      const pools = rolePools.get(r.lane);
+      if (!pools) continue;
+      let score = 0, weight = 0;
+      POWER_METRICS.forEach((metric, i) => {
+        const value = metric.value(r), pool = pools[i];
+        if (!Number.isFinite(value) || !pool.length) return;
+        score += metric.weight * powerPercentile(value, pool);
+        weight += metric.weight;
+      });
+      if (weight > 0) scored.push({ row:r, score:score / weight });
+    }
+    if (!scored.length) return { value:null, rows:[] };
+    const value = Math.max(...scored.map(x => x.score));
+    return { value, rows:scored.filter(x => x.score === value).map(x => x.row) };
+  }
+
   function matchDurationRecord(mode='min') {
     const byMatch = new Map();
     for (const r of rows) {
@@ -62,7 +93,7 @@
 
   function renderRecords() {
     const kills = maxRecord('kills');
-    const deaths = maxRecord('deaths');
+    const gamePower = maxGamePowerRecord();
     const assists = maxRecord('assists');
     const damage = maxRecord('damage');
     const cs = maxRecord('cs');
@@ -70,7 +101,7 @@
     const fastest = matchDurationRecord('min');
     const longest = matchDurationRecord('max');
 
-    app.innerHTML = `<div class="eyebrow">${rt('Season records','시즌 기록')}</div><h1>${rt('Record book','기록실')}</h1><p class="sub"><span>${rt('The biggest single-game performances and match-duration records.','한 경기 최고 기록과 경기 시간 기록을 확인하세요.')}</span> · <span>${recordsKo()?`시즌 ${activeSeason.label}`:`Season ${activeSeason.label}`}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','한 경기 최다 킬','COMBAT RECORD','전투 기록',kills)}${playerRecordCard('Most deaths in one game','한 경기 최다 데스','DEATH RECORD','데스 기록',deaths)}${playerRecordCard('Most assists in one game','한 경기 최다 어시스트','TEAMPLAY RECORD','팀플레이 기록',assists)}${playerRecordCard('Most CC in one game','한 경기 최다 CC','CONTROL RECORD','CC 기록',cc)}${playerRecordCard('Most damage in one game','한 경기 최다 데미지','DAMAGE RECORD','데미지 기록',damage)}${playerRecordCard('Most CS in one game','한 경기 최다 CS','FARM RECORD','파밍 기록',cs)}${matchRecordCard('Fastest ended game','최단 경기',fastest)}${matchRecordCard('Longest game','최장 경기',longest)}</div>`;
+    app.innerHTML = `<div class="eyebrow">${rt('Season records','시즌 기록')}</div><h1>${rt('Record book','기록실')}</h1><p class="sub"><span>${rt('The biggest single-game performances and match-duration records.','한 경기 최고 기록과 경기 시간 기록을 확인하세요.')}</span> · <span>${recordsKo()?`시즌 ${activeSeason.label}`:`Season ${activeSeason.label}`}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','한 경기 최다 킬','COMBAT RECORD','전투 기록',kills)}${playerRecordCard('Highest power score in one game','한 경기 최고 파워 스코어','POWER RECORD','파워 기록',gamePower,v=>n(v,1))}${playerRecordCard('Most assists in one game','한 경기 최다 어시스트','TEAMPLAY RECORD','팀플레이 기록',assists)}${playerRecordCard('Most CC in one game','한 경기 최다 CC','CONTROL RECORD','CC 기록',cc)}${playerRecordCard('Most damage in one game','한 경기 최다 데미지','DAMAGE RECORD','데미지 기록',damage)}${playerRecordCard('Most CS in one game','한 경기 최다 CS','FARM RECORD','파밍 기록',cs)}${matchRecordCard('Fastest ended game','최단 경기',fastest)}${matchRecordCard('Longest game','최장 경기',longest)}</div>`;
   }
 
   const baseRoute = route;
