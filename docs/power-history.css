@@ -1,0 +1,8 @@
+.power-daily{margin:24px 0 30px}
+.power-daily .sectionhead{margin-bottom:10px;gap:12px}
+.power-daily-note{font-size:12px;line-height:1.7;color:var(--muted);margin:10px 0 14px}
+.power-daily .tablewrap{max-height:360px;overflow:auto}
+.power-daily th{position:sticky;top:0;z-index:1}
+.power-daily td{font-variant-numeric:tabular-nums}
+.power-daily td small{color:var(--muted);font-size:10px}
+@media(max-width:760px){.power-daily th,.power-daily td{padding:12px 9px}.power-daily .sectionhead h2{font-size:19px}}

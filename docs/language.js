@@ -6,6 +6,12 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'Daily power history':'일별 파워랭킹 변화',
+    'Date':'날짜',
+    'Power change':'점수 변동',
+    'Rank change':'순위 변동',
+    'End-of-day cumulative standings, compared with the previous matchday. Days without league matches are omitted.':'해당 날짜의 마지막 경기까지 반영한 누적 점수·순위입니다. 이전 경기일과 비교하며, 리그 경기가 없는 날은 제외합니다.',
+    "Dates follow the match IDs. Today's standings may change as more games are added.":'날짜는 매치 ID를 기준으로 합니다. 오늘 기록은 경기가 추가되면 바뀔 수 있습니다.',
     'Settings':'설정',
     'New match POM alerts on this device.':'이 기기에서 새 경기의 POM 알림을 받습니다.',
     'ON':'켜짐',
