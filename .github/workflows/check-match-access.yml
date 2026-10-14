@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Check KR_8416287729 without saving or notifying
+      - name: Check KR_8419495991 without saving or notifying
         env:
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
         run: |
@@ -20,7 +20,7 @@ jobs:
           key = os.environ.get('RIOT_API_KEY', '').strip()
           if not key:
               raise SystemExit('RIOT_API_KEY is missing; match access could not be tested.')
-          url = 'https://asia.api.riotgames.com/lol/match/v5/matches/KR_8416287729'
+          url = 'https://asia.api.riotgames.com/lol/match/v5/matches/KR_8419495991'
           request = urllib.request.Request(url, headers={'X-Riot-Token': key})
           try:
               with urllib.request.urlopen(request, timeout=30) as response:
