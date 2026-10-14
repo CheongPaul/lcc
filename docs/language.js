@@ -67,6 +67,15 @@
         if (re.test(core)) { out = core.replace(re,replacement); break; }
       }
     }
+    // Numeric values, standalone unit spans, and sortable headers all use
+    // the same Korean per-minute wording. English originals remain untouched.
+    const perMinute = out.match(/^(.*?)\s*\/\s*min(?:ute)?s?\b(.*)$/i);
+    if (perMinute && /^(?:[\d,.]+|N\/A|—|CS|DMG|Damage|Gold|Vision)?$/i.test(perMinute[1].trim())) {
+      const value = perMinute[1].trim();
+      const suffix = perMinute[2];
+      const label = exact.get(value) ?? ({DMG:'데미지',DAMAGE:'데미지',GOLD:'골드',VISION:'시야',CS:'CS'}[value.toUpperCase()] ?? value);
+      out = '분당' + (label ? ' ' + label : '') + suffix;
+    }
     out = gameTerms[out] || translateGameTerms(out);
     return leading + out + trailing;
   }
