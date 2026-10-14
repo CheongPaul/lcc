@@ -15,7 +15,12 @@
   // Shared history tables include both match scoreboards and player histories.
   const originalHistoryTable = historyTable;
   historyTable = function(list) {
-    let html = originalHistoryTable(list);
+    const lanes = ['Top','Jungle','Mid','ADC','Support'];
+    const rank = role => lanes.includes(role) ? lanes.indexOf(role) : lanes.length;
+    const ordered = location.hash.startsWith('#match/')
+      ? [...list].sort((a,b) => rank(a.lane) - rank(b.lane) || a.player.localeCompare(b.player))
+      : list;
+    let html = originalHistoryTable(ordered);
     for (const name of new Set(list.map(r => r.champion))) {
       const original = `<a href="${link('champion',name)}">${esc(name)}</a>`;
       html = html.split(original).join(`<a class="match-champion" href="${link('champion',name)}">${iconHtml(name)}<span>${esc(name)}</span></a>`);
