@@ -33,9 +33,6 @@
     const id = champion && championArt[champion];
     if (!id) return '';
 
-    // Prefer the cached splash files served by this GitHub Pages site. They are
-    // already stored in docs/images/champions, so this avoids cross-origin/CDN
-    // image failures. External sources are only fallbacks.
     const local = `images/champions/${encodeURIComponent(id)}.jpg`;
     const cdragonId = id.toLowerCase();
     const community = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${encodeURIComponent(cdragonId)}/skins/skin0/images/${encodeURIComponent(cdragonId)}_splash_centered_0.jpg`;
@@ -62,14 +59,14 @@
 
   function renderRecords() {
     const kills = maxRecord('kills');
+    const deaths = maxRecord('deaths');
     const assists = maxRecord('assists');
     const damage = maxRecord('damage');
     const cs = maxRecord('cs');
-    const kp = maxRecord('kp');
     const cc = activeSeason.hasCC ? maxRecord('cc') : { value:null, rows:[] };
     const fastest = matchDurationRecord('min');
     const longest = matchDurationRecord('max');
-    app.innerHTML = `<div class="eyebrow">Season records</div><h1>Record book</h1><p class="sub"><span>The biggest single-game performances and match-duration records.</span> · <span>Season ${activeSeason.label}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','COMBAT RECORD',kills)}${playerRecordCard('Most assists in one game','TEAMPLAY RECORD',assists)}${playerRecordCard('Highest kill participation in one game','TEAM IMPACT RECORD',kp,v=>percent(v*100,1))}${playerRecordCard('Most CC in one game','CONTROL RECORD',cc)}${playerRecordCard('Most damage in one game','DAMAGE RECORD',damage)}${playerRecordCard('Most CS in one game','FARM RECORD',cs)}${matchRecordCard('Fastest ended game',fastest)}${matchRecordCard('Longest game',longest)}</div>`;
+    app.innerHTML = `<div class="eyebrow">Season records</div><h1>Record book</h1><p class="sub"><span>The biggest single-game performances and match-duration records.</span> · <span>Season ${activeSeason.label}</span></p><div class="records-grid">${playerRecordCard('Most kills in one game','COMBAT RECORD',kills)}${playerRecordCard('Most deaths in one game','DEATH RECORD',deaths)}${playerRecordCard('Most assists in one game','TEAMPLAY RECORD',assists)}${playerRecordCard('Most CC in one game','CONTROL RECORD',cc)}${playerRecordCard('Most damage in one game','DAMAGE RECORD',damage)}${playerRecordCard('Most CS in one game','FARM RECORD',cs)}${matchRecordCard('Fastest ended game',fastest)}${matchRecordCard('Longest game',longest)}</div>`;
   }
 
   const baseRoute = route;
