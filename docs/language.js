@@ -108,6 +108,7 @@
   }
 
   function processTextNode(node) {
+    if (node.parentElement?.closest('[translate="no"]')) return;
     if (!node.nodeValue || !node.nodeValue.trim()) return;
     if (!originals.has(node)) originals.set(node, node.nodeValue);
     const source = originals.get(node);
