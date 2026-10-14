@@ -7,7 +7,8 @@
     {label:'Top CS', key:'cs', format:p=>p.cs==null?'N/A':n(p.cs,2)+' / min'},
     {label:'Top Avg Kill Contribution', key:'kp', format:p=>percent(p.kp,2)},
     {label:'Top Vision', key:'vision', format:p=>p.vision==null?'N/A':n(p.vision,2)+' / min'},
-    {label:'Top CC', key:'cc', format:p=>n(p.cc)}
+    {label:'Top CC', key:'cc', format:p=>n(p.cc)},
+    {label:'Most POM awards', key:'pom', format:p=>n(p.pom)}
   ];
 
   function rankedPlayers(key) {
@@ -65,7 +66,7 @@
 
   function renderLeaderboard() {
     app.innerHTML = `<div class="eyebrow">League leaders</div>
-      <div class="leaderboard-heading"><div><h1>Leaderboard</h1><p class="sub">Top three players across nine live season categories.</p></div></div>
+      <div class="leaderboard-heading"><div><h1>Leaderboard</h1><p class="sub">Top three players across ten live season categories.</p></div></div>
       <div class="leaderboard-grid">${leaderboardCategories.map(leaderboardCard).join('')}</div>
       <div class="note">Updates from the same live match data as the rest of the site. Rankings refresh whenever Google Sheets refreshes.</div>`;
   }
