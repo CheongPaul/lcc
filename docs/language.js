@@ -6,6 +6,19 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'An internet connection is required for statistics. Enable POM alerts separately on this device.':'통계를 보려면 인터넷 연결이 필요합니다. POM 알림은 이 기기에서 별도로 켜 주세요.',
+    "POM notifications":"POM 알림",
+    "Get a notification when a new match POM is announced.":"새 경기의 POM이 발표되면 알림을 받아보세요.",
+    "POM alerts are on for this device. Delivery may be delayed.":"이 기기에서 POM 알림을 받습니다. 알림이 지연될 수 있습니다.",
+    "Updating notification settings…":"알림 설정을 변경하고 있습니다…",
+    "On iPhone or iPad, add LCC to your home screen and open it there first.":"아이폰·아이패드는 LCC를 홈 화면에 추가한 뒤 그 앱에서 설정해 주세요.",
+    "Push notifications are not supported in this browser.":"이 브라우저에서는 푸시 알림을 지원하지 않습니다.",
+    "Notifications are blocked. Allow them in your device or browser settings.":"알림이 차단되어 있습니다. 기기 또는 브라우저 설정에서 허용해 주세요.",
+    "POM notifications are awaiting Firebase setup. Please try again later.":"POM 알림 서버 설정이 아직 완료되지 않았습니다. 나중에 다시 시도해 주세요.",
+    "Could not update notifications. Check your connection and try again.":"알림 설정을 변경하지 못했습니다. 연결을 확인하고 다시 시도해 주세요.",
+    "Please wait…":"잠시만 기다려 주세요…",
+    "Turn off POM alerts":"POM 알림 끄기",
+    "Get POM alerts":"POM 알림 받기",
     "Keep LCC on your home screen.": "LCC를 홈 화면에서 바로 열어보세요.",
     "Install LCC": "LCC 앱 설치",
     "Add LCC to your home screen and open it like an app.": "LCC를 홈 화면에 추가하고 앱처럼 실행하세요.",

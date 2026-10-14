@@ -1,0 +1,105 @@
+import { firebaseConfig, vapidKey } from './firebase-config.js';
+
+const preference = 'lcc-pom-push';
+const bar = document.createElement('section');
+bar.className = 'pwa-install-bar push-bar';
+bar.setAttribute('aria-label', 'POM notifications');
+bar.innerHTML = '<div><strong>POM notifications</strong><p id="push-status" role="status"></p></div><button type="button" class="btn" id="push-toggle"></button>';
+document.querySelector('.livebar').before(bar);
+const button = bar.querySelector('button'), status = bar.querySelector('p');
+let enabled = localStorage.getItem(preference) === 'on', busy = false, sdkPromise;
+const copy = {
+  off: 'Get a notification when a new match POM is announced.',
+  on: 'POM alerts are on for this device. Delivery may be delayed.',
+  busy: 'Updating notification settings…',
+  ios: 'On iPhone or iPad, add LCC to your home screen and open it there first.',
+  unsupported: 'Push notifications are not supported in this browser.',
+  denied: 'Notifications are blocked. Allow them in your device or browser settings.',
+  setup: 'POM notifications are awaiting Firebase setup. Please try again later.',
+  error: 'Could not update notifications. Check your connection and try again.'
+};
+function render(message = enabled ? 'on' : 'off') {
+  // Replace text nodes so the existing translation observer receives fresh English source.
+  button.textContent = busy ? 'Please wait…' : enabled ? 'Turn off POM alerts' : 'Get POM alerts';
+  button.disabled = busy;
+  button.setAttribute('aria-pressed', String(enabled));
+  status.textContent = copy[message];
+}
+function loadSDK() {
+  if (!sdkPromise) sdkPromise = Promise.all([
+    import('https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js'),
+    import('https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js'),
+    import('https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js'),
+    import('https://www.gstatic.com/firebasejs/12.4.0/firebase-messaging.js')
+  ]).then(async ([core, auth, db, messaging]) => {
+    if (!await messaging.isSupported()) throw {code:'unsupported'};
+    const app = core.initializeApp(firebaseConfig, 'lcc-push');
+    const messenger = messaging.getMessaging(app);
+    messaging.onMessage(messenger, async payload => {
+      if (document.visibilityState !== 'visible' || !document.hasFocus()) return;
+      const registration = await navigator.serviceWorker.ready;
+      registration.active?.postMessage({type:'LCC_SHOW_POM',payload:payload.data});
+    });
+    return {auth, db, messaging, userAuth:auth.getAuth(app), store:db.getFirestore(app), messenger};
+  }).catch(error => { sdkPromise = null; throw error; });
+  return sdkPromise;
+}
+async function identity(sdk) {
+  await sdk.userAuth.authStateReady();
+  return sdk.userAuth.currentUser || (await sdk.auth.signInAnonymously(sdk.userAuth)).user;
+}
+async function subscribe() {
+  const sdk = await loadSDK();
+  const config = await sdk.db.getDoc(sdk.db.doc(sdk.store, 'pushPublic', 'status'));
+  if (!config.exists() || config.data().enabled !== true) throw {code:'setup'};
+  const user = await identity(sdk);
+  const registration = await navigator.serviceWorker.register('./sw.js', {scope:'./',updateViaCache:'none'});
+  await navigator.serviceWorker.ready;
+  const token = await sdk.messaging.getToken(sdk.messenger, {vapidKey, serviceWorkerRegistration:registration});
+  if (!token) throw {code:'setup'};
+  const ref = sdk.db.doc(sdk.store, 'pushSubscriptions', user.uid);
+  const previous = await sdk.db.getDoc(ref);
+  await sdk.db.setDoc(ref, {
+    token, language: document.documentElement.lang === 'ko' ? 'ko' : 'en',
+    createdAt:previous.exists() ? previous.data().createdAt : sdk.db.serverTimestamp(),
+    updatedAt:sdk.db.serverTimestamp()
+  });
+  localStorage.setItem(preference, 'on'); enabled = true;
+}
+async function unsubscribe() {
+  const sdk = await loadSDK();
+  const user = await identity(sdk);
+  // Stop server targeting first; never claim success while the subscription still exists.
+  await sdk.db.deleteDoc(sdk.db.doc(sdk.store, 'pushSubscriptions', user.uid));
+  await sdk.messaging.deleteToken(sdk.messenger);
+  localStorage.removeItem(preference); enabled = false;
+}
+function errorMessage(error) {
+  const code = String(error?.code || '');
+  if (code === 'unsupported') return 'unsupported';
+  if (code === 'setup' || /permission-denied|operation-not-allowed|configuration-not-found/.test(code)) return 'setup';
+  if (Notification.permission === 'denied') return 'denied';
+  return 'error';
+}
+button.addEventListener('click', async () => {
+  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios && !(navigator.standalone || matchMedia('(display-mode: standalone)').matches)) return render('ios');
+  if (!('Notification' in window) || !('serviceWorker' in navigator) || !window.isSecureContext) return render('unsupported');
+  // Must be invoked directly from the tap, before dynamic imports/network requests (iOS).
+  const permission = !enabled ? Notification.requestPermission() : Promise.resolve('granted');
+  busy = true; render('busy');
+  let message;
+  try {
+    if (await permission !== 'granted') message = 'denied';
+    else if (enabled) await unsubscribe();
+    else await subscribe();
+  } catch (error) { message = errorMessage(error); }
+  finally { busy = false; render(message); }
+});
+render();
+// Renew tokens only on devices that explicitly opted in; never ask permission on load.
+if (enabled && 'Notification' in window) {
+  busy = true; render('busy');
+  const refresh = Notification.permission === 'granted' ? subscribe() : unsubscribe();
+  refresh.then(() => {busy = false; render();}).catch(error => {busy = false; render(errorMessage(error));});
+}
