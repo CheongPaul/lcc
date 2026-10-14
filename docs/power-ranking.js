@@ -69,7 +69,12 @@ function rankChange(current,previous){
 }
 function changeClass(value){return value==null?'new':value>0?'up':value<0?'down':'same';}
 function scoreChangeBadge(value){if(value==null)return '<span class="power-change new">—</span>';const sign=value>0?'+':'';return `<span class="power-change ${changeClass(value)}">${sign}${value.toFixed(1)}</span>`;}
-function rankChangeBadge(value){if(value==null)return '<span class="rank-change new">—</span>';const sign=value>0?'+':'';return `<span class="rank-change ${changeClass(value)}">${sign}${value}</span>`;}
+function rankChangeBadge(value){
+  if(value==null)return '<span class="rank-change new">NEW</span>';
+  if(value>0)return `<span class="rank-change up">▲${value}</span>`;
+  if(value<0)return `<span class="rank-change down">▼${Math.abs(value)}</span>`;
+  return '<span class="rank-change same">—</span>';
+}
 function powerFlags(p){return `${p.provisional?'<span class="pill">Provisional</span>':''}${p.limited?'<span class="pill">Limited data</span>':''}`;}
 function powerStandoutCards(){
   const roster=new Map(players().map(p=>[p.name,p])),comparison=powerMatchdayComparison();
