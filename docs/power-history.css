@@ -6,3 +6,7 @@
 .power-daily td{font-variant-numeric:tabular-nums}
 .power-daily td small{color:var(--muted);font-size:10px}
 @media(max-width:760px){.power-daily th,.power-daily td{padding:12px 9px}.power-daily .sectionhead h2{font-size:19px}}
+.power-profile strong{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.power-profile-delta{display:inline-flex;align-items:center;margin-left:3px;padding:4px 8px;border-radius:5px;background:var(--bg);border:1px solid var(--line);font:700 16px Inter,sans-serif;line-height:1.25}
+.power-profile-delta .power-change,.power-profile-delta .rank-change{font-size:16px;min-width:0}
+.power-profile-day{flex-basis:100%;margin:0;font-size:11px;line-height:1.6;color:var(--muted)}

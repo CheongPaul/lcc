@@ -19,6 +19,11 @@ assert.equal(c.dailyPlayerPower('Unknown',records).length,0);
 assert.equal(c.dailyPlayerPower('A',[]).length,0);
 c.rows=records;const html=c.powerProfileSummary('A');
 assert.ok(html.includes('Daily power history'));assert.equal((html.match(/<tbody>/g)||[]).length,1);
+const header=html.split('<section class="power-daily">')[0];
+assert.equal((header.match(/class="power-profile-delta"/g)||[]).length,2);
+assert.ok(header.includes(c.scoreChangeBadge(h[1].scoreDelta)));
+assert.ok(header.includes(c.rankChangeBadge(h[1].rankDelta)));
+assert.ok(header.includes('2026.10.03 ← 2026.10.01'));
 assert.ok(html.indexOf('<td>2026.10.03')<html.indexOf('<td>2026.10.01'));
 for(const file of ['data.json','data-25-26.json']) {
  const records=JSON.parse(fs.readFileSync('docs/'+file,'utf8')).rows;
