@@ -79,8 +79,8 @@ function powerFlags(p){return `${p.provisional?'<span class="pill">Provisional</
 function powerStandoutCards(){
   const roster=new Map(players().map(p=>[p.name,p])),comparison=powerMatchdayComparison();
   return powerRankings().filter(p=>p.score!=null).slice(0,3).map(p=>{
-    const lane=roster.get(p.name)?.lane,previous=comparison.previousByName.get(p.name),delta=powerChange(p,previous);
-    return `<a class="leader power-leader" href="${link('player',p.name)}"><span class="ghost">${String(p.rank).padStart(2,'0')}</span>${laneIcon(lane,'power-lane-icon')}<small>POWER RANKING ↗</small><h3>${esc(p.name.split('#')[0])}</h3><div class="power-score-line"><strong>${n(p.score,1)}<span>/ 100</span></strong>${scoreChangeBadge(delta)}</div><div class="power-flags">${powerFlags(p)}</div></a>`;
+    const lane=roster.get(p.name)?.lane,previous=comparison.previousByName.get(p.name),delta=powerChange(p,previous),rankDelta=rankChange(p,previous);
+    return `<a class="leader power-leader" href="${link('player',p.name)}"><span class="ghost">${String(p.rank).padStart(2,'0')}</span>${laneIcon(lane,'power-lane-icon')}<small>POWER RANKING ↗</small><h3>${esc(p.name.split('#')[0])}</h3><div class="power-score-line"><strong>${n(p.score,1)}<span>/ 100</span></strong>${scoreChangeBadge(delta)}${rankChangeBadge(rankDelta)}</div><div class="power-flags">${powerFlags(p)}</div></a>`;
   }).join('');
 }
 function powerRankingSummary(){
