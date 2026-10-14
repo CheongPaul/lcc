@@ -1,0 +1,51 @@
+name: Check Riot match access (read only)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/check-match-access.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check KR_8416287729 without saving or notifying
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          key = os.environ.get('RIOT_API_KEY', '').strip()
+          if not key:
+              raise SystemExit('RIOT_API_KEY is missing; match access could not be tested.')
+          url = 'https://asia.api.riotgames.com/lol/match/v5/matches/KR_8416287729'
+          request = urllib.request.Request(url, headers={'X-Riot-Token': key})
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  data = json.load(response)
+              info = data.get('info', {})
+              participants = info.get('participants', [])
+              required = ['kills', 'deaths', 'assists', 'totalDamageDealtToChampions',
+                          'totalMinionsKilled', 'neutralMinionsKilled', 'goldEarned',
+                          'visionScore', 'firstBloodKill', 'win', 'timeCCingOthers', 'championName']
+              print('MATCH_LOOKUP HTTP 200')
+              print(json.dumps({'matchId': data.get('metadata', {}).get('matchId'),
+                  'gameType': info.get('gameType'), 'queueId': info.get('queueId'),
+                  'duration': info.get('gameDuration'), 'participants': len(participants),
+                  'missingFields': sorted({f for p in participants for f in required if f not in p}),
+                  'players': [{'name': p.get('riotIdGameName'), 'tag': p.get('riotIdTagline'),
+                      'champion': p.get('championName'), 'kills': p.get('kills'),
+                      'deaths': p.get('deaths'), 'assists': p.get('assists'),
+                      'position': p.get('teamPosition')} for p in participants]}, ensure_ascii=False))
+          except urllib.error.HTTPError as error:
+              print('MATCH_LOOKUP HTTP', error.code)
+              print({403: 'Key denied or expired; match availability is inconclusive.',
+                     401: 'Authentication failed; match availability is inconclusive.',
+                     404: 'Match not found or unavailable through this API.',
+                     429: 'Rate limited; match availability is inconclusive.'}.get(error.code,
+                     'Request failed; match availability is inconclusive.'))
+          except (urllib.error.URLError, TimeoutError):
+              raise SystemExit('Network error; match availability is inconclusive.')
+          PY
