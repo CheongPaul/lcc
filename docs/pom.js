@@ -30,6 +30,8 @@
     });
   }
 
+  window.gamePowerScores = gamePowerScores;
+
   function tieBreakValue(record) {
     const kda = (Number(record.kills)||0) + (Number(record.assists)||0);
     const deaths = Math.max(Number(record.deaths)||0, 1);
@@ -108,12 +110,34 @@
     return holder.innerHTML;
   };
 
+  function markPlayerPomHistory(name) {
+    const heading = [...app.querySelectorAll('.sectionhead h2')].find(h => h.textContent.trim() === 'Match history');
+    const history = heading?.closest('.sectionhead')?.nextElementSibling;
+    if (!history) return;
+    history.querySelectorAll('tbody tr').forEach(row => {
+      const matchLink = row.querySelector('td:first-child a[href^="#match/"]');
+      if (!matchLink) return;
+      let match;
+      try { match = decodeURIComponent(matchLink.getAttribute('href').slice('#match/'.length)); }
+      catch { return; }
+      const pom = pomWinnerForMatch(match);
+      if (!pom || pom.player !== name) return;
+      row.classList.add('profile-pom-row');
+      const badge = document.createElement('span');
+      badge.className = 'profile-pom-badge';
+      badge.textContent = 'POM';
+      badge.title = 'Player of Match';
+      matchLink.insertAdjacentElement('afterend', badge);
+    });
+  }
+
   const baseDetail = detail;
   detail = function(type, name) {
     baseDetail(type, name);
     if (type !== 'player') return;
     const impact = app.querySelector('.impact-stats');
     if (impact) impact.insertAdjacentHTML('beforeend', stat('POM awards', pomAwardCount(name)));
+    markPlayerPomHistory(name);
   };
 
   function latestPomCard() {
