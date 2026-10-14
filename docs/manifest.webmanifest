@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "LCC — Champions Chadwick",
+  "short_name": "LCC",
+  "description": "League of Legends Champions Chadwick: players, matches and season statistics.",
+  "lang": "en",
+  "start_url": "./?source=pwa#overview",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c1014",
+  "theme_color": "#0c1014",
+  "icons": [
+    {"src": "images/app/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "images/app/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "images/app/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "prefer_related_applications": false
+}
