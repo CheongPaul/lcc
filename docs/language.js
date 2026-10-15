@@ -6,6 +6,11 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'Next match schedule alerts':'다음 경기 일정 알림 받기',
+    'Schedule updates and reminders before the next match.':'일정 등록·변경 및 경기 시작 1시간 전 알림을 받습니다.',
+    'Choose which notifications to receive on this device.':'이 기기에서 받을 알림을 각각 선택하세요.',
+    'Notification preferences are saved for this device. Delivery may be delayed.':'이 기기의 알림 설정이 저장됐습니다. 알림이 지연될 수 있습니다.',
+    'Schedule alerts require updated Firebase rules. Existing POM alerts remain available.':'일정 알림은 Firebase 규칙 갱신이 필요합니다. 기존 POM 알림은 계속 사용할 수 있습니다.',
     'CC per game':'경기당 CC',
     'CC score per recorded game':'기록된 경기당 평균 CC 점수',
     'Player stat profile':'선수 스탯 분포',

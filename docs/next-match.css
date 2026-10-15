@@ -1,0 +1,5 @@
+.next-match-card{margin:18px 44px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--panel);border:1px solid var(--accent-line);border-left:4px solid var(--lime);border-radius:8px}
+.next-match-card[hidden]{display:none}.next-match-card .eyebrow{font-size:11px}.next-match-card h2{font-size:21px;margin:8px 0}.next-match-card p{margin:0;font-size:14px;color:var(--muted)}
+.next-match-right{display:flex;flex-direction:column;gap:8px;text-align:right}.next-match-right strong{font-size:19px;color:var(--lime)}.next-match-right span{font-size:11px;color:var(--muted)}
+.settings-row+.settings-row{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+@media(max-width:760px){.next-match-card{margin:14px 18px;padding:18px;align-items:flex-start;flex-direction:column;gap:14px}.next-match-card h2{font-size:18px}.next-match-right{text-align:left}}

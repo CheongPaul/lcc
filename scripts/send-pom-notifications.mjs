@@ -35,7 +35,7 @@ if (Object.keys(state.pending).length) {
     if (!result.ok) throw new Error('Cannot read subscriptions: '+result.status);
     for (const doc of result.data.documents || []) {
       const token = doc.fields?.token?.stringValue;
-      if (token) subscribers.set(digest(token), {token,language:doc.fields.language?.stringValue || 'en',name:doc.name,updateTime:doc.updateTime});
+      if (token && doc.fields.pomEnabled?.booleanValue !== false) subscribers.set(digest(token), {token,language:doc.fields.language?.stringValue || 'en',name:doc.name,updateTime:doc.updateTime});
     }
     pageToken = result.data.nextPageToken || '';
   } while (pageToken);

@@ -1,4 +1,12 @@
 function pomNotification(data) {
+  if (data?.kind === 'schedule') {
+    if (data.season !== '26-27' || !/^\d{13}-(3|5)$/.test(data.scheduleId || '')) return null;
+    const url = new URL('./?season=26-27#overview', self.registration.scope);
+    return {title:String(data.title || 'LCC · Next match').slice(0,120),options:{
+      body:String(data.body || '').slice(0,300),icon:new URL('images/app/icon-192.png',self.registration.scope).href,
+      tag:'lcc-schedule-'+data.scheduleId,renotify:false,data:{url:url.href}
+    }};
+  }
   if (!data || !/^\d{8}$/.test(data.match || '') || data.season !== '26-27') return null;
   const url = new URL('./', self.registration.scope);
   url.searchParams.set('season', data.season);
@@ -20,7 +28,7 @@ function showPom(data) {
 }
 // Register before Firebase's click handler, as recommended by Firebase.
 self.addEventListener('notificationclick', event => {
-  if (!event.notification.tag?.startsWith('lcc-pom-')) return;
+  if (!/^lcc-(pom|schedule)-/.test(event.notification.tag || '')) return;
   event.stopImmediatePropagation();
   event.notification.close();
   const url = new URL(event.notification.data?.url || './', self.registration.scope);

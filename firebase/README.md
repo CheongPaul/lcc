@@ -68,3 +68,23 @@ GitHub 저장소 숫자 ID·소유자 ID·main 브랜치·정확한 발송 workf
 
 Node 22 이상에서 `node --test tests/pom-notifications.test.mjs` 실행.
 테스트는 가짜 네트워크로 발송을 검증하며 실제 알림/Firestore 쓰기를 하지 않습니다.
+# Next match schedule alerts
+
+The `NextMatch` tab in the 26/27 workbook uses `Date`, `Time`, `Best of` columns.
+Dates use YYMMDD (for example 261015) or a Sheets date; times are Korea time;
+`Best of` is 3 or 5. The site displays the nearest future match and refreshes every minute.
+
+Publish the updated `firebase/firestore.rules` in Firebase Console → Firestore Database → Rules.
+The optional boolean fields `pomEnabled` and `scheduleEnabled` allow separate switches.
+Old POM-only documents remain valid. Schedule alerts default OFF and require explicit opt-in.
+
+The existing OIDC workflow also checks schedules. Two consecutive matching checks confirm a
+schedule before sending an update. A separate reminder is sent within the final hour before
+start; a schedule added during that hour produces only the reminder. GitHub schedule delays
+mean delivery is not guaranteed at exactly one hour. Expired, invalid or unavailable schedules
+never generate alerts. Updates to the date/time/format are new events. Alerts link to Overview.
+Durable per-device claims avoid repeated attempts; uncertain delivery is not retried.
+
+No new cloud billing or credentials are required. The owner must publish the expanded rules
+before the schedule switch can save; deployed POM notifications continue working meanwhile.
+

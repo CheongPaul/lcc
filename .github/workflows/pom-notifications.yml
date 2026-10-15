@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test notification logic
-        run: node --test tests/pom-notifications.test.mjs tests/pom-test-send.test.mjs
+        run: node --test tests/pom-notifications.test.mjs tests/pom-test-send.test.mjs tests/schedule-notifications.test.mjs
       - id: auth
         uses: google-github-actions/auth@v3
         with:
@@ -37,6 +37,11 @@ jobs:
         env:
           GOOGLE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
         run: node scripts/send-pom-notifications.mjs
+      - name: Check next match schedule and send opted-in alerts
+        if: always() && github.event_name != 'push' && steps.auth.outcome == 'success'
+        env:
+          GOOGLE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+        run: node scripts/send-schedule-notifications.mjs
       - name: Send explicitly requested one-time preview to a single device
         if: github.event_name == 'push'
         env:

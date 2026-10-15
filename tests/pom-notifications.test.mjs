@@ -86,7 +86,7 @@ test('sender integration: baseline, confirmation, unique tokens and no repeat se
       return stored?json({...stored,updateTime:'revision-'+revision}):json({},404);
     }
     if(url.includes('/pushPublic/status'))return json({});
-    if(url.includes('/pushSubscriptions?')) return json({documents:[1,2].map(i=>({name:'subscription/'+i,fields:{token:{stringValue:'same-device-token'},language:{stringValue:'ko'}}}))});
+    if(url.includes('/pushSubscriptions?')) return json({documents:[...[1,2].map(i=>({name:'subscription/'+i,fields:{token:{stringValue:'same-device-token'},language:{stringValue:'ko'}}})),{name:'subscription/schedule-only',fields:{token:{stringValue:'schedule-only-token'},pomEnabled:{booleanValue:false},scheduleEnabled:{booleanValue:true}}}]});
     if(url.includes('/messages:send')) {sends++;const message=JSON.parse(options.body).message;assert(!message.notification);if(failSend)throw new Error('Simulated ambiguous timeout');assert.equal(message.data.match,'26101501');return json({name:'accepted'});}
     throw new Error('Unexpected test request');
   };
