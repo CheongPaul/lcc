@@ -35,8 +35,8 @@ function detail(type,name){
  ${type==='player'&&previousPlayerNames(name).length?`<p class="player-alias">Previous username: ${previousPlayerNames(name).map(esc).join(', ')}</p>`:''}
  ${type==='player'?powerProfileSummary(name):''}
  ${type==='player'?'<p class="art-rule">Main champion: most games played; ties use win rate, then KDA.</p>':''}
- <div class="stats">${stat('Games played',p.games)}${stat('Win rate',p.games?n(p.wr,1)+'%':'—',p.wins+'W / '+(p.games-p.wins)+'L')}${stat('KDA',kda(p))}${stat('Damage / minute',n(p.damage))}</div>
- <div class="sectionhead"><h2>Season totals & impact</h2></div><div class="stats impact-stats">${stat('Total kills',n(p.kills))}${stat('Total deaths',n(p.deaths))}${stat('Total assists',n(p.assists))}${stat('First blood rate',percent(p.fb),n(p.firstBlood)+' / '+p.fbGames+' recorded games')}${stat('Total crowd control',n(p.cc),activeSeason.hasCC?'CC score':'Not recorded this season')}${stat('CS / minute',n(p.cs,2))}</div>
+ <div class="stats profile-main-stats">${stat('Games played',p.games)}${stat('Win rate',p.games?n(p.wr,1)+'%':'—',p.wins+'W / '+(p.games-p.wins)+'L')}${stat('KDA',kda(p))}${stat('CS / minute',n(p.cs,2))}${stat('Damage / minute',n(p.damage))}</div>
+ <div class="sectionhead"><h2>Season totals & impact</h2></div><div class="stats impact-stats">${stat('Total kills',n(p.kills))}${stat('Total deaths',n(p.deaths))}${stat('Total assists',n(p.assists))}${stat('First blood rate',percent(p.fb),n(p.firstBlood)+' / '+p.fbGames+' recorded games')}${stat('Total crowd control',n(p.cc),activeSeason.hasCC?'CC score':'Not recorded this season')}</div>
  ${type==='player'?'<div class="sectionhead"><h2>Champion pool</h2></div><div class="tablewrap">'+champRows(Object.entries(group(list,'champion')).map(([c,r])=>stats(r,c)).sort((a,b)=>b.games-a.games))+'</div>':''}<div class="sectionhead"><h2>Match history</h2></div>${historyTable(list)}`
 }
 
