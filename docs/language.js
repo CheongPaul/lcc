@@ -88,6 +88,8 @@
 
   const patterns = [
     [/^Matchday (\d+) · Set (\d+)(.*)$/, '매치데이 $1 · $2세트$3'],
+    [/^Matchday (\d+)$/, '매치데이 $1'],
+    [/^Set (\d+)$/, '$1세트'],
     [/^Previous username: (.+)$/, '이전 닉네임: $1'],
     [/^SEASON (.+)$/, '시즌 $1'],
     [/^Ranked by KDA$/, 'KDA 기준 순위'],[/^Ranked by (.+)$/, '$1 기준 순위'],

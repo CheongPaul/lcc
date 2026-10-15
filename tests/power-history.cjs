@@ -1,6 +1,7 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const c={console,rows:[],document:{addEventListener(){}},link:(t,id)=>'#'+t+'/'+id,n:(x,d)=>x==null?'N/A':x.toFixed(d),esc:String};
 vm.createContext(c);
+vm.runInContext(fs.readFileSync('docs/app.js','utf8').split('\n').find(line=>line.startsWith('function matchLabel(')),c);
 for(const file of ['power-ranking.js','power-chart.js','power-history.js']) vm.runInContext(fs.readFileSync('docs/'+file,'utf8'),c);
 const base={lane:'Top',kills:5,deaths:2,assists:4,kp:.6,dpm:400,gpm:350,vpm:1};
 const records=[

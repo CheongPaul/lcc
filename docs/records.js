@@ -59,7 +59,7 @@
   }
 
   function recordHolder(r) {
-    return `<div class="record-holder"><a class="record-player" href="${link('player',r.player)}">${parts(r.player)}</a><span class="record-meta"><a href="${link('champion',r.champion)}">${esc(r.champion)}</a> · <a href="${link('match',r.match)}">${rt('Match','경기')} ${esc(r.match)} ↗</a></span></div>`;
+    return `<div class="record-holder"><a class="record-player" href="${link('player',r.player)}">${parts(r.player)}</a><span class="record-meta"><a href="${link('champion',r.champion)}">${esc(r.champion)}</a> · <a href="${link('match',r.match)}">${esc(matchLabel(r.match))} ↗</a></span></div>`;
   }
 
   function championBackground(record) {
@@ -86,7 +86,7 @@
   function matchRecordCard(titleEn, titleKo, record) {
     const body = record.matches.length ? record.matches.map(m => {
       const players = m.rows.length;
-      return `<div class="record-holder"><a class="record-player" href="${link('match',m.id)}">${rt('Match','경기')} ${esc(m.id)} ↗</a><span class="record-meta">${date(m.id)} · ${recordsKo()?`${players}명`:`${players} players`}</span></div>`;
+      return `<div class="record-holder"><a class="record-player" href="${link('match',m.id)}">${esc(matchLabel(m.id))} ↗</a><span class="record-meta">${date(m.id)} · ${recordsKo()?`${players}명`:`${players} players`}</span></div>`;
     }).join('') : `<div class="record-empty">${rt('No recorded data.','기록된 데이터가 없습니다.')}</div>`;
     return `<article class="record-card record-card-wide"><div class="record-card-content"><div class="record-eyebrow">${rt('MATCH RECORD','경기 기록')}</div><h2>${rt(titleEn,titleKo)}</h2><strong class="record-value">${record.value==null?'—':duration(record.value)}</strong>${body}</div></article>`;
   }
