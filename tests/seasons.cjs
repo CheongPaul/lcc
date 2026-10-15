@@ -4,7 +4,7 @@ for(const season of ['25-26','26-27']){
  const nodes={};const node=id=>nodes[id]??=( {innerHTML:'',textContent:'',value:id==='champsort'?'games':'',dataset:{},querySelector(){return null},setAttribute(){},focus(){},addEventListener(){},classList:{toggle(){},remove(){}}});
  const document={querySelector:s=>node(s.slice(1)),getElementById:node,querySelectorAll:()=>[],documentElement:{dataset:{}},addEventListener(){}};
  const context=vm.createContext({document,URL,URLSearchParams,location:{href:`https://cheongpaul.github.io/lcc/?season=${season}`,hash:'#overview'},history:{replaceState(){}},addEventListener(){},window:{scrollTo(){}},fetch:()=>new Promise(()=>{}),console});
- for(const file of ['seasons.js','live.js','champion-art.js','app.js','power-ranking.js','leaderboard.js','about-simple.js','compare.js','matchup.js'])vm.runInContext(fs.readFileSync(root+file,'utf8'),context);
+ for(const file of ['seasons.js','live.js','champion-art.js','app.js','player-radar.js','power-ranking.js','leaderboard.js','about-simple.js','compare.js','matchup.js'])vm.runInContext(fs.readFileSync(root+file,'utf8'),context);
  context.fixture=JSON.parse(fs.readFileSync(root+(season==='25-26'?'data-25-26.json':'data.json')));
  vm.runInContext('data=normalizeSeasonData(fixture);rows=data.rows',context);
  const allRows=vm.runInContext('rows',context);

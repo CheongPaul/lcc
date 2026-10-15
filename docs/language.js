@@ -6,6 +6,14 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'CC per game':'경기당 CC',
+    'CC score per recorded game':'기록된 경기당 평균 CC 점수',
+    'Player stat profile':'선수 스탯 분포',
+    '6 STATS':'6개 지표',
+    'Value':'실제 수치',
+    'Percentile':'백분위',
+    'Season roster percentiles: farther out means higher. These axes compare all positions, not power-ranking scores. Ties share a percentile.':'같은 시즌 전체 선수 대비 백분위입니다. 바깥쪽일수록 높으며, 포지션을 구분하지 않습니다. 파워랭킹 점수와는 별개이고 동점은 평균 백분위를 공유합니다.',
+    'DMG, VISION and CS are per-minute averages. KP is kill participation. CC is the average per recorded game. Missing statistics are not plotted.':'DMG·VISION·CS는 분당 평균, KP는 킬 관여율, CC는 기록된 경기당 평균입니다. 미기록 지표는 차트에 표시하지 않습니다.',
     'Season totals & averages':'시즌 누적 및 평균 지표',
     'Power ranking journey':'경기별 파워랭킹 추이',
     'Power score · left axis':'파워랭킹 점수 · 왼쪽 축',

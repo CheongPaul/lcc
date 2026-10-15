@@ -36,7 +36,8 @@ function detail(type,name){
  ${type==='player'?powerProfileSummary(name):''}
  ${type==='player'?'<p class="art-rule">Main champion: most games played; ties use win rate, then KDA.</p>':''}
  <div class="stats profile-main-stats">${stat('Games played',p.games)}${stat('Win rate',p.games?n(p.wr,1)+'%':'—',p.wins+'W / '+(p.games-p.wins)+'L')}${stat('KDA',kda(p))}</div>
- <div class="sectionhead"><h2>Season totals & averages</h2></div><div class="stats impact-stats">${stat('CS / minute',n(p.cs,2))}${stat('Damage / minute',n(p.damage))}${stat('Gold / minute',n(p.gold,1))}${stat('Vision / minute',n(p.vision,2))}${stat('Total kills',n(p.kills))}${stat('Total deaths',n(p.deaths))}${stat('Total assists',n(p.assists))}${stat('First blood rate',percent(p.fb),n(p.firstBlood)+' / '+p.fbGames+' recorded games')}${stat('Total crowd control',n(p.cc),activeSeason.hasCC?'CC score':'Not recorded this season')}</div>
+ ${type==='player'?playerRadar(name):''}
+ <div class="sectionhead"><h2>Season totals & averages</h2></div><div class="stats impact-stats">${stat('CS / minute',n(p.cs,2))}${stat('Damage / minute',n(p.damage))}${stat('Gold / minute',n(p.gold,1))}${stat('Vision / minute',n(p.vision,2))}${stat('Total kills',n(p.kills))}${stat('Total deaths',n(p.deaths))}${stat('Total assists',n(p.assists))}${stat('First blood rate',percent(p.fb),n(p.firstBlood)+' / '+p.fbGames+' recorded games')}${stat('CC per game',n(activeSeason.hasCC?avg(list,'cc'):null,1),activeSeason.hasCC?'CC score per recorded game':'Not recorded this season')}</div>
  ${type==='player'?'<div class="sectionhead"><h2>Champion pool</h2></div><div class="tablewrap">'+champRows(Object.entries(group(list,'champion')).map(([c,r])=>stats(r,c)).sort((a,b)=>b.games-a.games))+'</div>':''}<div class="sectionhead"><h2>Match history</h2></div>${historyTable(list)}`
 }
 

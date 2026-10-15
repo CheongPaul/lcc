@@ -1,0 +1,15 @@
+.player-radar{margin:24px 0 30px;padding:22px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.player-radar .sectionhead{margin:0 0 10px;gap:10px}
+.radar-note{color:var(--muted);font-size:12px;line-height:1.7;margin:10px 0}
+.radar-layout{display:grid;grid-template-columns:minmax(240px,1fr) minmax(260px,1fr);gap:28px;align-items:center}
+.radar-layout svg{width:100%;max-width:420px;display:block;margin:auto;overflow:visible}
+.radar-grid{fill:none;stroke:var(--line);stroke-width:1}.radar-missing{stroke-dasharray:4 4}
+.radar-tick{fill:var(--muted);font:9px Inter,sans-serif}.radar-axis{fill:var(--text);font:600 11px Inter,sans-serif}
+.radar-area{fill:#35d6d126;stroke:#35d6d1;stroke-width:2}.radar-edge{stroke:#35d6d1;stroke-width:2}
+.radar-dot{fill:#35d6d1;stroke:var(--panel);stroke-width:1.5}
+.radar-value,.radar-values-head{display:grid;grid-template-columns:minmax(0,1fr) 70px 75px;align-items:center;gap:8px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}
+.radar-values-head{font-size:10px;color:var(--muted)}
+.radar-value>:nth-child(n+2),.radar-values-head>:nth-child(n+2){text-align:right;font-variant-numeric:tabular-nums}
+.radar-value>span:last-child{color:var(--muted)}.radar-value strong{color:#35d6d1}
+@media(max-width:900px){.radar-layout{grid-template-columns:1fr;gap:0}.radar-layout svg{max-width:340px}}
+@media(max-width:760px){.player-radar{padding:16px}.player-radar .sectionhead h2{font-size:20px}.radar-value,.radar-values-head{grid-template-columns:minmax(0,1fr) 62px 68px;font-size:11px}}
