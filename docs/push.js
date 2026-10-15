@@ -8,7 +8,13 @@ settingsButton.setAttribute('aria-labelledby', 'settings-button-label');
 settingsButton.setAttribute('aria-haspopup', 'dialog');
 settingsButton.setAttribute('aria-controls', 'lcc-settings');
 settingsButton.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m9 3-.6 2.2-1.8 1L4.4 6l-2 3.5L4 11v2l-1.6 1.5 2 3.5 2.2-.2 1.8 1L9 21h6l.6-2.2 1.8-1 2.2.2 2-3.5L20 13v-2l1.6-1.5-2-3.5-2.2.2-1.8-1L15 3Z"/><circle cx="12" cy="12" r="3.3"/></svg><span id="settings-button-label" class="settings-sr-only">Settings</span>';
-document.querySelector('.header-actions').append(settingsButton);
+const settingsDesktop = matchMedia('(min-width: 761px)');
+function positionSettingsButton() {
+  const target = document.querySelector(settingsDesktop.matches ? '.asidebottom' : '.header-actions');
+  if (target && settingsButton.parentElement !== target) target.append(settingsButton);
+}
+positionSettingsButton();
+settingsDesktop.addEventListener('change', positionSettingsButton);
 const settings = document.createElement('dialog');
 settings.id = 'lcc-settings';
 settings.className = 'settings-dialog';
