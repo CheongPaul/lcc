@@ -6,6 +6,7 @@
   const gameTerms = window.LCC_KO_TERMS || {};
 
   const exact = new Map(Object.entries({
+    'Season totals & averages':'시즌 누적 및 평균 지표',
     'Power ranking journey':'경기별 파워랭킹 추이',
     'Power score · left axis':'파워랭킹 점수 · 왼쪽 축',
     'Season rank · right axis':'시즌 순위 · 오른쪽 축',
