@@ -43,13 +43,13 @@
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 273,
+    "summonerLevel": 274,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "III",
-      "leaguePoints": 35,
-      "wins": 205,
+      "rank": "II",
+      "leaguePoints": 6,
+      "wins": 209,
       "losses": 196
     }
   },
@@ -101,9 +101,9 @@
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "IV",
-      "leaguePoints": 87,
-      "wins": 180,
+      "rank": "III",
+      "leaguePoints": 66,
+      "wins": 184,
       "losses": 171
     }
   }
