@@ -40,7 +40,7 @@ export async function loadLive(fetcher = fetch) {
   };
   const main = await read('Main');
   const names = site.seasonRoster(main).map(r => String(r['Player ID'].v));
-  if (names.length !== 10) throw new Error('Expected ten player tabs');
+  if (names.length < 10) throw new Error('Expected at least ten player tabs');
   const tables = await Promise.all(names.map(read));
   return site.assembleLive(main,tables).rows;
 }
