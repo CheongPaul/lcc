@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 84,
-      "wins": 209,
-      "losses": 197
+      "leaguePoints": 99,
+      "wins": 212,
+      "losses": 199
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -89,22 +89,22 @@
     "image": "images/player-icons/778fc34d7005b6a7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "III",
-      "leaguePoints": 97,
-      "wins": 236,
-      "losses": 232
+      "rank": "II",
+      "leaguePoints": 17,
+      "wins": 239,
+      "losses": 234
     }
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 397,
+    "summonerLevel": 398,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 6,
-      "wins": 189,
-      "losses": 175
+      "leaguePoints": 26,
+      "wins": 192,
+      "losses": 177
     }
   }
 }
