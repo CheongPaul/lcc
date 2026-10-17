@@ -48,7 +48,7 @@ function parsePlayerSheet(table,player){
 function seasonRoster(main){return sheetRecords(main).filter(r=>r['Player ID']?.v&&!activeSeason.excluded.includes(String(r['Player ID'].v)))}
 function assembleLive(main,tables){
  const records=seasonRoster(main),players=records.map(r=>String(r['Player ID'].v));
- if(!players.length||new Set(players.map(canonicalPlayer)).size!==players.length||(activeSeason.completeMatches&&players.length!==10))throw new Error('Invalid player roster in Main');
+ if(!players.length||new Set(players.map(canonicalPlayer)).size!==players.length||(activeSeason.completeMatches&&players.length<10))throw new Error('Invalid player roster in Main');
  const parsed=tables.map((table,i)=>parsePlayerSheet(table,players[i])),pending=new Set(parsed.flatMap(p=>[...p.pending]));
  const all=parsed.flatMap(p=>p.rows),byMatch=Object.groupBy(all,r=>r.match);let complete=[];
  for(const [id,match] of Object.entries(byMatch)){
@@ -64,7 +64,7 @@ async function refreshLive(){
  if(liveBusy)return;liveBusy=true;liveStatus('Checking Google Sheets…','checking');
  try{
   const main=await readSheet('Main'),names=seasonRoster(main).map(r=>String(r['Player ID'].v));
-  if(!names.length||(activeSeason.completeMatches&&names.length!==10))throw new Error('Expected ten player tabs');
+  if(!names.length||(activeSeason.completeMatches&&names.length<10))throw new Error('Expected at least ten player tabs');
   const tables=await Promise.all(names.map(name=>readSheet(name))),fresh=assembleLive(main,tables);
   const changed=JSON.stringify(fresh.rows)!==JSON.stringify(rows)||JSON.stringify(fresh.ratings)!==JSON.stringify(data.ratings)||data.source!=='Google Sheets';
   data=fresh;rows=fresh.rows;liveLastSuccess=new Date();
