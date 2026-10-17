@@ -10,8 +10,8 @@
   try { savedVolume = localStorage.getItem('lcc-music-volume'); } catch {}
   audio.volume = savedVolume !== null && savedVolume !== undefined && Number.isFinite(Number(savedVolume))
     ? Math.min(1, Math.max(0, Number(savedVolume))) : 0.3;
-  let enabled = true, waitingForGesture = false, bag = [], current = -1, failures = 0, request = 0;
-  try { enabled = localStorage.getItem('lcc-music-enabled') !== 'off'; } catch {}
+  let enabled = false, waitingForGesture = false, bag = [], current = -1, failures = 0, request = 0;
+  try { enabled = localStorage.getItem('lcc-music-enabled') === 'on'; } catch {}
   let section, toggle, slider, output, title, status, next;
   let message = 'off';
   const copy = {
