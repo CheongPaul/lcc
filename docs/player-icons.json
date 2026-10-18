@@ -6,9 +6,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "III",
-      "leaguePoints": 87,
-      "wins": 42,
-      "losses": 54
+      "leaguePoints": 93,
+      "wins": 43,
+      "losses": 55
     }
   },
   "waitaminuteboy#KR1": {
@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 55,
-      "wins": 648,
+      "leaguePoints": 75,
+      "wins": 649,
       "losses": 609
     }
   },
@@ -114,9 +114,9 @@
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "II",
-      "leaguePoints": 66,
+      "leaguePoints": 23,
       "wins": 13,
-      "losses": 14
+      "losses": 17
     }
   }
 }
