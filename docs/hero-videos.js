@@ -1,5 +1,5 @@
 (() => {
-  const VIDEO_IDS = ['0ctbiMWxtPU', 'Rjr4ws0DCwQ'];
+  const VIDEO_IDS = ['0ctbiMWxtPU', 'Rjr4ws0DCwQ', 'lJBAgxuOCQc'];
   let player = null;
   let currentId = null;
   let queue = [];
