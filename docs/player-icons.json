@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 37,
-      "wins": 651,
+      "leaguePoints": 56,
+      "wins": 652,
       "losses": 614
     }
   },
@@ -114,8 +114,8 @@
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "II",
-      "leaguePoints": 34,
-      "wins": 15,
+      "leaguePoints": 57,
+      "wins": 16,
       "losses": 21
     }
   }
