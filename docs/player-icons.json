@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 0,
-      "wins": 649,
+      "leaguePoints": 37,
+      "wins": 651,
       "losses": 614
     }
   },
@@ -109,14 +109,14 @@
   },
   "Rainlight#4416": {
     "profileIconId": 5708,
-    "summonerLevel": 119,
+    "summonerLevel": 120,
     "image": "images/player-icons/c8aa76f0a124b156.png",
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "II",
-      "leaguePoints": 98,
+      "leaguePoints": 34,
       "wins": 15,
-      "losses": 17
+      "losses": 21
     }
   }
 }
