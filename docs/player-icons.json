@@ -24,9 +24,9 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 56,
+      "leaguePoints": 35,
       "wins": 652,
-      "losses": 614
+      "losses": 615
     }
   },
   "꼬우새연#KR1": {
@@ -114,9 +114,9 @@
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "II",
-      "leaguePoints": 57,
-      "wins": 16,
-      "losses": 21
+      "leaguePoints": 63,
+      "wins": 17,
+      "losses": 22
     }
   }
 }
