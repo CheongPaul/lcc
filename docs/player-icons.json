@@ -1,14 +1,14 @@
 {
   "Saudade#00001": {
     "profileIconId": 4802,
-    "summonerLevel": 61,
+    "summonerLevel": 62,
     "image": "images/player-icons/1925f942a690f49d.png",
     "soloQueue": {
       "tier": "SILVER",
       "rank": "III",
-      "leaguePoints": 93,
+      "leaguePoints": 75,
       "wins": 43,
-      "losses": 55
+      "losses": 56
     }
   },
   "waitaminuteboy#KR1": {
@@ -22,11 +22,11 @@
     "summonerLevel": 450,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
-      "tier": "EMERALD",
-      "rank": "I",
-      "leaguePoints": 93,
-      "wins": 655,
-      "losses": 620
+      "tier": "DIAMOND",
+      "rank": "IV",
+      "leaguePoints": 8,
+      "wins": 657,
+      "losses": 621
     }
   },
   "꼬우새연#KR1": {
@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "IV",
-      "leaguePoints": 0,
-      "wins": 192,
-      "losses": 191
+      "leaguePoints": 12,
+      "wins": 194,
+      "losses": 192
     }
   },
   "나임우냐#KR1": {
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 34,
-      "wins": 212,
-      "losses": 202
+      "leaguePoints": 30,
+      "wins": 213,
+      "losses": 203
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 45,
-      "wins": 176,
-      "losses": 176
+      "leaguePoints": 64,
+      "wins": 178,
+      "losses": 178
     }
   },
   "루카리오파동탄#KR1": {
@@ -73,7 +73,7 @@
   },
   "여행자27#KR1": {
     "profileIconId": 7170,
-    "summonerLevel": 167,
+    "summonerLevel": 168,
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "SILVER",
@@ -109,14 +109,14 @@
   },
   "Rainlight#4416": {
     "profileIconId": 5708,
-    "summonerLevel": 120,
+    "summonerLevel": 121,
     "image": "images/player-icons/c8aa76f0a124b156.png",
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "I",
-      "leaguePoints": 10,
-      "wins": 19,
-      "losses": 22
+      "leaguePoints": 66,
+      "wins": 22,
+      "losses": 23
     }
   }
 }
