@@ -6,9 +6,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "III",
-      "leaguePoints": 75,
+      "leaguePoints": 57,
       "wins": 43,
-      "losses": 56
+      "losses": 57
     }
   },
   "waitaminuteboy#KR1": {
@@ -43,14 +43,14 @@
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 274,
+    "summonerLevel": 275,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 48,
+      "leaguePoints": 4,
       "wins": 214,
-      "losses": 203
+      "losses": 205
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 43,
-      "wins": 178,
-      "losses": 179
+      "leaguePoints": 20,
+      "wins": 179,
+      "losses": 181
     }
   },
   "루카리오파동탄#KR1": {
@@ -114,8 +114,8 @@
     "soloQueue": {
       "tier": "BRONZE",
       "rank": "I",
-      "leaguePoints": 66,
-      "wins": 22,
+      "leaguePoints": 90,
+      "wins": 23,
       "losses": 23
     }
   }
