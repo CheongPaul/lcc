@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 6,
-      "wins": 660,
+      "leaguePoints": 25,
+      "wins": 661,
       "losses": 624
     }
   },
@@ -97,14 +97,14 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 398,
+    "summonerLevel": 399,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 26,
-      "wins": 195,
-      "losses": 180
+      "leaguePoints": 84,
+      "wins": 198,
+      "losses": 182
     }
   },
   "Rainlight#4416": {
