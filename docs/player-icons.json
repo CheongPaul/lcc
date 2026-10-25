@@ -47,10 +47,10 @@
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "IV",
-      "leaguePoints": 56,
-      "wins": 215,
-      "losses": 208
+      "rank": "III",
+      "leaguePoints": 6,
+      "wins": 218,
+      "losses": 209
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -114,9 +114,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 38,
+      "leaguePoints": 21,
       "wins": 24,
-      "losses": 24
+      "losses": 25
     }
   }
 }
