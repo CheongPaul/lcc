@@ -43,14 +43,14 @@
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 275,
+    "summonerLevel": 276,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "III",
-      "leaguePoints": 6,
+      "rank": "IV",
+      "leaguePoints": 61,
       "wins": 218,
-      "losses": 209
+      "losses": 211
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -102,9 +102,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 84,
+      "leaguePoints": 19,
       "wins": 198,
-      "losses": 182
+      "losses": 185
     }
   },
   "Rainlight#4416": {
