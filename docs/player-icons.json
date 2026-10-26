@@ -36,8 +36,8 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "IV",
-      "leaguePoints": 12,
-      "wins": 194,
+      "leaguePoints": 31,
+      "wins": 195,
       "losses": 192
     }
   },
@@ -48,8 +48,8 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 61,
-      "wins": 218,
+      "leaguePoints": 97,
+      "wins": 220,
       "losses": 211
     }
   },
@@ -59,10 +59,10 @@
     "image": "images/player-icons/85b4b7609a779866.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "II",
-      "leaguePoints": 20,
+      "rank": "III",
+      "leaguePoints": 99,
       "wins": 179,
-      "losses": 181
+      "losses": 182
     }
   },
   "루카리오파동탄#KR1": {
