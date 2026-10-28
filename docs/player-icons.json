@@ -31,14 +31,14 @@
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 367,
+    "summonerLevel": 368,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "III",
-      "leaguePoints": 26,
-      "wins": 199,
-      "losses": 192
+      "rank": "IV",
+      "leaguePoints": 82,
+      "wins": 200,
+      "losses": 195
     }
   },
   "나임우냐#KR1": {
@@ -47,10 +47,10 @@
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "III",
-      "leaguePoints": 15,
+      "rank": "IV",
+      "leaguePoints": 93,
       "wins": 221,
-      "losses": 211
+      "losses": 212
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 97,
+      "leaguePoints": 76,
       "wins": 180,
-      "losses": 183
+      "losses": 184
     }
   },
   "루카리오파동탄#KR1": {
@@ -109,7 +109,7 @@
   },
   "Rainlight#4416": {
     "profileIconId": 5708,
-    "summonerLevel": 121,
+    "summonerLevel": 122,
     "image": "images/player-icons/c8aa76f0a124b156.png",
     "soloQueue": {
       "tier": "SILVER",
