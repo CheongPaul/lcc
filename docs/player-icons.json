@@ -1,7 +1,7 @@
 {
   "Saudade#00001": {
     "profileIconId": 4802,
-    "summonerLevel": 62,
+    "summonerLevel": 63,
     "image": "images/player-icons/1925f942a690f49d.png",
     "soloQueue": {
       "tier": "SILVER",
@@ -35,9 +35,9 @@
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "IV",
-      "leaguePoints": 82,
-      "wins": 200,
+      "rank": "III",
+      "leaguePoints": 58,
+      "wins": 204,
       "losses": 195
     }
   },
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 93,
+      "leaguePoints": 71,
       "wins": 221,
-      "losses": 212
+      "losses": 213
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 76,
-      "wins": 180,
-      "losses": 184
+      "leaguePoints": 74,
+      "wins": 181,
+      "losses": 185
     }
   },
   "루카리오파동탄#KR1": {
