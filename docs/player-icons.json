@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 30,
+      "leaguePoints": 9,
       "wins": 182,
-      "losses": 188
+      "losses": 189
     }
   },
   "루카리오파동탄#KR1": {
@@ -80,7 +80,7 @@
       "rank": "II",
       "leaguePoints": 82,
       "wins": 52,
-      "losses": 54
+      "losses": 55
     }
   },
   "이거진짜#KRI": {
@@ -114,14 +114,14 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 21,
-      "wins": 24,
-      "losses": 25
+      "leaguePoints": 8,
+      "wins": 25,
+      "losses": 27
     }
   },
   "윤조한#9326": {
     "profileIconId": 7249,
-    "summonerLevel": 60,
+    "summonerLevel": 61,
     "image": "images/player-icons/8c8b9ae54007eb00.png",
     "soloQueue": {
       "tier": "PLATINUM",
