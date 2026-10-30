@@ -36,21 +36,21 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 58,
-      "wins": 204,
-      "losses": 195
+      "leaguePoints": 76,
+      "wins": 206,
+      "losses": 196
     }
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 276,
+    "summonerLevel": 277,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 67,
-      "wins": 222,
-      "losses": 214
+      "leaguePoints": 63,
+      "wins": 223,
+      "losses": 215
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 72,
+      "leaguePoints": 30,
       "wins": 182,
-      "losses": 186
+      "losses": 188
     }
   },
   "루카리오파동탄#KR1": {
@@ -78,7 +78,7 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "II",
-      "leaguePoints": 87,
+      "leaguePoints": 82,
       "wins": 52,
       "losses": 54
     }
