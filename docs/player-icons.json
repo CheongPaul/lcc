@@ -118,5 +118,17 @@
       "wins": 24,
       "losses": 25
     }
+  },
+  "윤조한#9326": {
+    "profileIconId": 7249,
+    "summonerLevel": 60,
+    "image": "images/player-icons/8c8b9ae54007eb00.png",
+    "soloQueue": {
+      "tier": "PLATINUM",
+      "rank": "IV",
+      "leaguePoints": 71,
+      "wins": 21,
+      "losses": 23
+    }
   }
 }
