@@ -50,7 +50,7 @@ function calculatePowerRankings(records) {
   return ranked.map((p,i)=>{const displayed=p.score==null?null:p.score.toFixed(1);if(displayed!==last)rank=i+1;last=displayed;return {...p,rank:p.score==null?null:rank};});
 }
 function powerRankings(){return calculatePowerRankings(rows);}
-function matchdayKey(record){const id=String(record?.match??'');const m=id.match(/^(\d{6})/);return m?m[1]:null;}
+function matchdayKey(record){const id=String(record?.match??'')==='26103101'?'26103003':String(record?.match??'');const m=id.match(/^(\d{6})/);return m?m[1]:null;}
 function powerMatchdayComparison(){
   const days=[...new Set(rows.map(matchdayKey).filter(Boolean))].sort();
   if(days.length<2)return {latest:days.at(-1)||null,previous:null,previousRankings:[],previousByName:new Map()};
