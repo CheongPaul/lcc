@@ -45,7 +45,12 @@ function parsePlayerSheet(table,player){
  }
  return {rows:result,pending};
 }
-function seasonRoster(main){return sheetRecords(main).filter(r=>r['Player ID']?.v&&!activeSeason.excluded.includes(String(r['Player ID'].v)))}
+function seasonRoster(main){
+ const records=sheetRecords(main).filter(r=>r['Player ID']?.v&&!activeSeason.excluded.includes(String(r['Player ID'].v)));
+ const names=new Set(records.map(r=>canonicalPlayer(String(r['Player ID'].v))));
+ for(const name of activeSeason.profileOnly||[])if(!names.has(name))records.push({'Player ID':{v:name},'Top Rating':{v:'Unlisted'}});
+ return records;
+}
 function assembleLive(main,tables){
  const records=seasonRoster(main),players=records.map(r=>String(r['Player ID'].v));
  if(!players.length||new Set(players.map(canonicalPlayer)).size!==players.length||(activeSeason.completeMatches&&players.length<10))throw new Error('Invalid player roster in Main');

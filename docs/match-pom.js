@@ -2,7 +2,7 @@
 (() => {
   function matchGamePowerScores(matchId) {
     const rolePools = new Map();
-    for (const r of rows) {
+    for (const r of rankedRecords(rows)) {
       if (!['Top','Jungle','Mid','ADC','Support'].includes(r.lane)) continue;
       if (!rolePools.has(r.lane)) rolePools.set(r.lane, POWER_METRICS.map(() => []));
       POWER_METRICS.forEach((metric, i) => {
@@ -13,7 +13,7 @@
     for (const pools of rolePools.values()) for (const pool of pools) pool.sort((a,b)=>a-b);
 
     const scores = new Map();
-    for (const r of rows) {
+    for (const r of rankedRecords(rows)) {
       if (String(r.match) !== String(matchId)) continue;
       const pools = rolePools.get(r.lane);
       let score = 0, weight = 0;

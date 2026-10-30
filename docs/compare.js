@@ -12,7 +12,7 @@ function comparisonOptions(selected, excluded='') {
 const comparisonBaseDetail = detail;
 detail = function(type, name) {
   comparisonBaseDetail(type, name);
-  if(type!=='player'||!rows.some(r=>r.player===name))return;
+  if(type!=='player'||isProfileOnly(name)||!rows.some(r=>r.player===name))return;
   const others=players().filter(p=>p.name!==name);
   app.innerHTML += `<section class="compare-launch"><button class="btn" id="compare-toggle" aria-expanded="false" aria-controls="compare-picker">Compare player</button><div id="compare-picker" hidden><label for="compare-opponent">Choose another player</label><select id="compare-opponent">${comparisonOptions('',name)}</select>${others.length?`<a class="btn compare-open" id="compare-open" target="_blank" rel="noopener noreferrer" href="${esc(comparisonURL(name,[...others].sort((a,b)=>a.name.localeCompare(b.name))[0].name))}">Open comparison ↗</a>`:'<p>No other players available.</p>'}<p class="sub">Opens in a new tab using this season’s data.</p></div></section>`;
   // Keep the action beside the profile rather than below the match history.

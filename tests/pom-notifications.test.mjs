@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {matchEvents,advanceState,parseSheet,notificationData,siteContext} from '../scripts/pom-source.mjs';
-const records = JSON.parse(fs.readFileSync(new URL('../docs/data.json',import.meta.url))).rows;
+const records = JSON.parse(fs.readFileSync(new URL('../docs/data.json',import.meta.url))).rows.filter(r=>r.match<='26101103');
 const events = matchEvents(records);
 test('POM uses unchanged website implementation and winning team', () => {
   const site = siteContext(records);

@@ -4,7 +4,7 @@
   const rt = (en, ko) => recordsKo() ? ko : en;
 
   function maxRecord(key) {
-    const eligible = rows.filter(r => r[key] != null && r[key] !== '' && Number.isFinite(Number(r[key])));
+    const eligible = rankedRecords(rows).filter(r => r[key] != null && r[key] !== '' && Number.isFinite(Number(r[key])));
     if (!eligible.length) return { value:null, rows:[] };
     const value = Math.max(...eligible.map(r => Number(r[key])));
     return { value, rows:eligible.filter(r => Number(r[key]) === value) };
@@ -13,7 +13,7 @@
   // Same raw per-game Power score used by the POM system, but across every player/game.
   function maxGamePowerRecord() {
     const rolePools = new Map();
-    for (const r of rows) {
+    for (const r of rankedRecords(rows)) {
       if (!['Top','Jungle','Mid','ADC','Support'].includes(r.lane)) continue;
       if (!rolePools.has(r.lane)) rolePools.set(r.lane, POWER_METRICS.map(() => []));
       POWER_METRICS.forEach((metric, i) => {
@@ -24,7 +24,7 @@
     for (const pools of rolePools.values()) for (const pool of pools) pool.sort((a,b) => a-b);
 
     const scored = [];
-    for (const r of rows) {
+    for (const r of rankedRecords(rows)) {
       const pools = rolePools.get(r.lane);
       if (!pools) continue;
       let score = 0, weight = 0;

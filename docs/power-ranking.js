@@ -21,6 +21,7 @@ function powerPercentile(value, sorted) {
   return 100*(lower+(equal-1)/2)/(sorted.length-1);
 }
 function calculatePowerRankings(records) {
+  records = rankedRecords(records);
   const roles=new Map(),byPlayer=new Map();
   for(const r of records){
     if(!byPlayer.has(r.player))byPlayer.set(r.player,{name:r.player,games:0,scores:[],limited:false});

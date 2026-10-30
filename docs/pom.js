@@ -4,6 +4,7 @@
   let cachedAwards = null;
 
   function gamePowerScores(records = rows) {
+    records = rankedRecords(records);
     const rolePools = new Map();
     for (const r of records) {
       if (!['Top','Jungle','Mid','ADC','Support'].includes(r.lane)) continue;
@@ -134,7 +135,7 @@
   const baseDetail = detail;
   detail = function(type, name) {
     baseDetail(type, name);
-    if (type !== 'player') return;
+    if (type !== 'player' || isProfileOnly(name)) return;
     const impact = app.querySelector('.impact-stats');
     if (impact) impact.insertAdjacentHTML('beforeend', stat('POM awards', pomAwardCount(name)));
     markPlayerPomHistory(name);

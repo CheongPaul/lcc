@@ -1,6 +1,6 @@
 // The URL is authoritative: separate tabs and shared links never share season state.
 const LCC_SEASONS = {
-  '26-27': {label:'26/27', year:'2026–27', sheetId:'1rmFSc8JZ4NT_7h14pc6CLkdG0Gi8GcSFLfRbh1nOSmM', snapshot:'data.json', hasCC:true, completeMatches:true, excluded:[]},
+  '26-27': {label:'26/27', year:'2026–27', sheetId:'1rmFSc8JZ4NT_7h14pc6CLkdG0Gi8GcSFLfRbh1nOSmM', snapshot:'data.json', hasCC:true, completeMatches:true, excluded:[], profileOnly:['윤조한']},
   '25-26': {label:'25/26', year:'2025–26', sheetId:'1hke5Q6odlqK-UPdbPWLcFz-_1fVitSQGAuf6Sc_EElI', snapshot:'data-25-26.json', hasCC:false, completeMatches:false, excluded:['내꿈은 코르키#5877','절불이라능#KR1']}
 };
 const seasonURL = new URL(location.href);
@@ -17,6 +17,9 @@ const LCC_PLAYER_ALIASES = {
 };
 const canonicalPlayer = name => LCC_PLAYER_ALIASES[name] || name;
 const previousPlayerNames = name => Object.keys(LCC_PLAYER_ALIASES).filter(old => LCC_PLAYER_ALIASES[old] === name);
+// Guests retain scoreboards and personal history, but never enter season aggregates.
+const isProfileOnly = name => (activeSeason.profileOnly || []).includes(canonicalPlayer(name));
+const rankedRecords = records => records.filter(r => !isProfileOnly(r.player));
 function normalizeSeasonData(value) {
   if(value.season !== activeSeason.year) throw new Error('Season data mismatch');
   return {...value, ratings:Object.fromEntries(Object.entries(value.ratings || {}).filter(([name])=>!activeSeason.excluded.includes(name)).map(([name,rank])=>[canonicalPlayer(name),rank])), rows:value.rows.filter(row=>!activeSeason.excluded.includes(row.player)).map(row=>({...row,player:canonicalPlayer(row.player),cc:activeSeason.hasCC?row.cc:null}))};

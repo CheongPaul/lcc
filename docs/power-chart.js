@@ -23,7 +23,7 @@ function powerChartReadout(point) {
 function powerGameChart(name) {
   const points = playerGamePower(name);
   if (!points.length) return '';
-  const maxRank = Math.max(2,new Set(rows.map(r=>r.player)).size);
+  const maxRank = Math.max(2,new Set(rankedRecords(rows).map(r=>r.player)).size);
   const width = Math.max(640,points.length*105+100), height=300, left=48,right=width-48,top=35,bottom=250;
   const x=i=>points.length===1?(left+right)/2:left+i*(right-left)/(points.length-1);
   const sy=value=>bottom-value/100*(bottom-top);
