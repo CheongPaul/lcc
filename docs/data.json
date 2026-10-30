@@ -13,7 +13,7 @@
     "waitaminuteboy#KR1": "Silver IV",
     "루카리오파동탄#KR1": "Silver II",
     "Rainlight#4416": "Unlisted",
-    "윤조한": "Unlisted"
+    "윤조한#9326": "Unlisted"
   },
   "rows": [
     {
@@ -6638,7 +6638,7 @@
       "champion": "Rakan",
       "lane": "Support",
       "cc": 42,
-      "player": "윤조한"
+      "player": "윤조한#9326"
     },
     {
       "match": "26103002",
@@ -6661,7 +6661,7 @@
       "champion": "Braum",
       "lane": "Support",
       "cc": 26,
-      "player": "윤조한"
+      "player": "윤조한#9326"
     },
     {
       "match": "26103101",
@@ -6684,7 +6684,7 @@
       "champion": "Zilean",
       "lane": "Support",
       "cc": 20,
-      "player": "윤조한"
+      "player": "윤조한#9326"
     }
   ]
 }

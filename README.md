@@ -36,4 +36,4 @@ Run `node tests/seasons.cjs` for season routing, rendering, aliases, missing-met
 
 ## Profile-only guest players
 
-26/27 configures 윤조한 in `profileOnly` in `docs/seasons.js`. The live feed loads that separate tab without adding it to Main. Complete scoreboards retain all ten participants and original team totals. The guest profile is linked from match records and keeps personal statistics/history; roster/search/export, comparisons, league/champion aggregates, records, POM, and power-ranking pools exclude guest appearances. Both live refreshes and the fallback snapshot use this policy.
+26/27 configures 윤조한#9326 in `profileOnly` in `docs/seasons.js`. The live feed loads that separate tab without adding it to Main. Complete scoreboards retain all ten participants and original team totals. The guest profile is linked from match records and keeps personal statistics/history; roster/search/export, comparisons, league/champion aggregates, records, POM, and power-ranking pools exclude guest appearances. Both live refreshes and the fallback snapshot use this policy.

@@ -22,16 +22,16 @@ for(const season of ['25-26','26-27']){
  console.log(season,'matchup:',matchup.lane,matchup.a.name,matchup.b.name,'gap',matchup.gap,near.map(m=>m.category.key));
 
  if(season==='26-27'){
-  assert(!vm.runInContext('players()',context).some(p=>p.name==='윤조한'));
-  assert(!power.some(p=>p.name==='윤조한'));
-  assert.equal(allRows.filter(r=>r.player==='윤조한').length,3);
+  assert(!vm.runInContext('players()',context).some(p=>p.name==='윤조한#9326'));
+  assert(!power.some(p=>p.name==='윤조한#9326'));
+  assert.equal(allRows.filter(r=>r.player==='윤조한#9326').length,3);
   for(const page of ['overview','players','leaderboard','champions','champion/Rakan']){
-   context.location.hash='#'+page;vm.runInContext('route()',context);assert(!nodes.app.innerHTML.includes('윤조한'),page);
+   context.location.hash='#'+page;vm.runInContext('route()',context);assert(!nodes.app.innerHTML.includes('윤조한#9326'),page);
   }
   context.location.hash='#match/26103101';vm.runInContext('route()',context);
-  assert(nodes.app.innerHTML.includes('#player/'+encodeURIComponent('윤조한')));
-  context.location.hash='#player/'+encodeURIComponent('윤조한');vm.runInContext('route()',context);
-  assert(nodes.app.innerHTML.includes('윤조한'));assert(nodes.app.innerHTML.includes('게스트 선수'));
+  assert(nodes.app.innerHTML.includes('#player/'+encodeURIComponent('윤조한#9326')));
+  context.location.hash='#player/'+encodeURIComponent('윤조한#9326');vm.runInContext('route()',context);
+  assert(nodes.app.innerHTML.includes('윤조한#9326'));assert(nodes.app.innerHTML.includes('게스트 선수'));
   assert(!nodes.app.innerHTML.includes('Compare player'));assert(!nodes.app.innerHTML.includes('Season rank'));
   assert(!nodes.app.innerHTML.includes('Six-axis'));assert(nodes.app.innerHTML.includes('4 / 2 / 17'));
   assert(nodes.app.innerHTML.includes('0 / 7 / 13'));assert(nodes.app.innerHTML.includes('0 / 6 / 8'));
