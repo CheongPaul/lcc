@@ -6,8 +6,8 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "III",
-      "leaguePoints": 57,
-      "wins": 43,
+      "leaguePoints": 78,
+      "wins": 44,
       "losses": 57
     }
   },
@@ -55,14 +55,14 @@
   },
   "더불어만진당구속#멸공멸공": {
     "profileIconId": 5635,
-    "summonerLevel": 462,
+    "summonerLevel": 463,
     "image": "images/player-icons/85b4b7609a779866.png",
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 9,
-      "wins": 182,
-      "losses": 189
+      "leaguePoints": 26,
+      "wins": 184,
+      "losses": 190
     }
   },
   "루카리오파동탄#KR1": {
@@ -97,7 +97,7 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 399,
+    "summonerLevel": 400,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
@@ -121,13 +121,13 @@
   },
   "윤조한#9326": {
     "profileIconId": 7249,
-    "summonerLevel": 61,
+    "summonerLevel": 62,
     "image": "images/player-icons/8c8b9ae54007eb00.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "III",
-      "leaguePoints": 71,
-      "wins": 25,
+      "rank": "II",
+      "leaguePoints": 45,
+      "wins": 27,
       "losses": 23
     }
   }
