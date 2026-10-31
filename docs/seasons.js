@@ -1,6 +1,6 @@
 // The URL is authoritative: separate tabs and shared links never share season state.
 const LCC_SEASONS = {
-  '26-27': {label:'26/27', year:'2026–27', sheetId:'1rmFSc8JZ4NT_7h14pc6CLkdG0Gi8GcSFLfRbh1nOSmM', snapshot:'data.json', hasCC:true, completeMatches:true, excluded:[], profileOnly:['윤조한#9326','절불이라능#뎁마뎁마']},
+  '26-27': {label:'26/27', year:'2026–27', sheetId:'1rmFSc8JZ4NT_7h14pc6CLkdG0Gi8GcSFLfRbh1nOSmM', snapshot:'data.json', hasCC:true, completeMatches:true, excluded:[], profileOnly:['윤조한#9326']},
   '25-26': {label:'25/26', year:'2025–26', sheetId:'1hke5Q6odlqK-UPdbPWLcFz-_1fVitSQGAuf6Sc_EElI', snapshot:'data-25-26.json', hasCC:false, completeMatches:false, excluded:['내꿈은 코르키#5877','절불이라능#KR1']}
 };
 const seasonURL = new URL(location.href);
