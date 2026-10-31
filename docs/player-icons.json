@@ -130,5 +130,17 @@
       "wins": 27,
       "losses": 23
     }
+  },
+  "절불이라능#뎁마뎁마": {
+    "profileIconId": 5959,
+    "summonerLevel": 514,
+    "image": "images/player-icons/ed3b7fa967009952.png",
+    "soloQueue": {
+      "tier": "EMERALD",
+      "rank": "IV",
+      "leaguePoints": 50,
+      "wins": 10,
+      "losses": 13
+    }
   }
 }
