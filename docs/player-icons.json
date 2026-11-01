@@ -13,7 +13,7 @@
   },
   "waitaminuteboy#KR1": {
     "profileIconId": 1295,
-    "summonerLevel": 248,
+    "summonerLevel": 249,
     "image": "images/player-icons/6e8413051f1e928d.png",
     "soloQueue": null
   },
@@ -36,8 +36,8 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 33,
-      "wins": 207,
+      "leaguePoints": 53,
+      "wins": 208,
       "losses": 199
     }
   },
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 26,
-      "wins": 184,
-      "losses": 190
+      "leaguePoints": 24,
+      "wins": 185,
+      "losses": 191
     }
   },
   "루카리오파동탄#KR1": {
