@@ -31,14 +31,14 @@
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 368,
+    "summonerLevel": 369,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 76,
-      "wins": 206,
-      "losses": 196
+      "leaguePoints": 33,
+      "wins": 207,
+      "losses": 199
     }
   },
   "나임우냐#KR1": {
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 63,
-      "wins": 223,
-      "losses": 215
+      "leaguePoints": 37,
+      "wins": 224,
+      "losses": 217
     }
   },
   "더불어만진당구속#멸공멸공": {
