@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "IV",
-      "leaguePoints": 87,
+      "leaguePoints": 66,
       "wins": 210,
-      "losses": 204
+      "losses": 205
     }
   },
   "나임우냐#KR1": {
@@ -73,7 +73,7 @@
   },
   "여행자27#KR1": {
     "profileIconId": 7170,
-    "summonerLevel": 168,
+    "summonerLevel": 169,
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "SILVER",
@@ -97,7 +97,7 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 400,
+    "summonerLevel": 401,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
