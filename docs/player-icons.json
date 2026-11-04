@@ -35,22 +35,22 @@
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "III",
-      "leaguePoints": 5,
+      "rank": "IV",
+      "leaguePoints": 65,
       "wins": 214,
-      "losses": 207
+      "losses": 209
     }
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 277,
+    "summonerLevel": 278,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 37,
+      "leaguePoints": 15,
       "wins": 224,
-      "losses": 217
+      "losses": 218
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -102,21 +102,21 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 19,
-      "wins": 198,
-      "losses": 185
+      "leaguePoints": 15,
+      "wins": 199,
+      "losses": 186
     }
   },
   "Rainlight#4416": {
     "profileIconId": 5708,
-    "summonerLevel": 122,
+    "summonerLevel": 123,
     "image": "images/player-icons/c8aa76f0a124b156.png",
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 46,
-      "wins": 29,
-      "losses": 31
+      "leaguePoints": 69,
+      "wins": 30,
+      "losses": 32
     }
   },
   "윤조한#9326": {
