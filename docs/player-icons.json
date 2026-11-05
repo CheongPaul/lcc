@@ -1,13 +1,13 @@
 {
   "Saudade#00001": {
     "profileIconId": 4802,
-    "summonerLevel": 63,
+    "summonerLevel": 64,
     "image": "images/player-icons/1925f942a690f49d.png",
     "soloQueue": {
       "tier": "SILVER",
-      "rank": "III",
-      "leaguePoints": 78,
-      "wins": 44,
+      "rank": "II",
+      "leaguePoints": 46,
+      "wins": 47,
       "losses": 57
     }
   },
@@ -19,14 +19,14 @@
   },
   "가 타 카#1997": {
     "profileIconId": 7099,
-    "summonerLevel": 451,
+    "summonerLevel": 452,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "IV",
-      "leaguePoints": 40,
-      "wins": 663,
-      "losses": 626
+      "leaguePoints": 74,
+      "wins": 665,
+      "losses": 627
     }
   },
   "꼬우새연#KR1": {
@@ -34,11 +34,11 @@
     "summonerLevel": 370,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
-      "tier": "EMERALD",
-      "rank": "IV",
-      "leaguePoints": 65,
+      "tier": "PLATINUM",
+      "rank": "I",
+      "leaguePoints": 32,
       "wins": 214,
-      "losses": 209
+      "losses": 217
     }
   },
   "나임우냐#KR1": {
@@ -97,14 +97,14 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 401,
+    "summonerLevel": 402,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "II",
-      "leaguePoints": 15,
+      "rank": "III",
+      "leaguePoints": 93,
       "wins": 199,
-      "losses": 186
+      "losses": 187
     }
   },
   "Rainlight#4416": {
@@ -133,7 +133,7 @@
   },
   "절불이라능#뎁마뎁마": {
     "profileIconId": 5959,
-    "summonerLevel": 514,
+    "summonerLevel": 515,
     "image": "images/player-icons/ed3b7fa967009952.png",
     "soloQueue": {
       "tier": "EMERALD",
