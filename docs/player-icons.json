@@ -5,9 +5,9 @@
     "image": "images/player-icons/1925f942a690f49d.png",
     "soloQueue": {
       "tier": "SILVER",
-      "rank": "II",
-      "leaguePoints": 46,
-      "wins": 47,
+      "rank": "I",
+      "leaguePoints": 10,
+      "wins": 49,
       "losses": 57
     }
   },
@@ -23,21 +23,21 @@
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
-      "rank": "IV",
-      "leaguePoints": 74,
-      "wins": 665,
-      "losses": 627
+      "rank": "III",
+      "leaguePoints": 7,
+      "wins": 668,
+      "losses": 628
     }
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 370,
+    "summonerLevel": 371,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "I",
-      "leaguePoints": 32,
-      "wins": 214,
+      "leaguePoints": 50,
+      "wins": 215,
       "losses": 218
     }
   },
