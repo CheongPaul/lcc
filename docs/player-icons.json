@@ -6,9 +6,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 20,
+      "leaguePoints": 2,
       "wins": 51,
-      "losses": 59
+      "losses": 60
     }
   },
   "waitaminuteboy#KR1": {
@@ -18,15 +18,15 @@
     "soloQueue": null
   },
   "가 타 카#1997": {
-    "profileIconId": 7345,
-    "summonerLevel": 453,
+    "profileIconId": 7099,
+    "summonerLevel": 454,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "III",
-      "leaguePoints": 16,
-      "wins": 675,
-      "losses": 635
+      "leaguePoints": 13,
+      "wins": 677,
+      "losses": 637
     }
   },
   "꼬우새연#KR1": {
@@ -90,9 +90,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 96,
+      "leaguePoints": 55,
       "wins": 242,
-      "losses": 238
+      "losses": 240
     }
   },
   "힝구리포로롱#KR1": {
