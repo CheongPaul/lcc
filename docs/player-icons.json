@@ -19,14 +19,14 @@
   },
   "가 타 카#1997": {
     "profileIconId": 7099,
-    "summonerLevel": 454,
+    "summonerLevel": 455,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "III",
-      "leaguePoints": 93,
-      "wins": 682,
-      "losses": 638
+      "leaguePoints": 37,
+      "wins": 684,
+      "losses": 643
     }
   },
   "꼬우새연#KR1": {
@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 84,
-      "wins": 215,
-      "losses": 221
+      "leaguePoints": 36,
+      "wins": 216,
+      "losses": 224
     }
   },
   "나임우냐#KR1": {
@@ -78,9 +78,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 38,
+      "leaguePoints": 17,
       "wins": 55,
-      "losses": 55
+      "losses": 56
     }
   },
   "이거진짜#KRI": {
@@ -114,8 +114,8 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 0,
-      "wins": 32,
+      "leaguePoints": 18,
+      "wins": 33,
       "losses": 39
     }
   },
@@ -126,9 +126,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "I",
-      "leaguePoints": 65,
-      "wins": 34,
-      "losses": 26
+      "leaguePoints": 97,
+      "wins": 36,
+      "losses": 27
     }
   },
   "절불이라능#뎁마뎁마": {
