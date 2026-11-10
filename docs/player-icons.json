@@ -13,7 +13,7 @@
   },
   "waitaminuteboy#KR1": {
     "profileIconId": 1295,
-    "summonerLevel": 249,
+    "summonerLevel": 250,
     "image": "images/player-icons/6e8413051f1e928d.png",
     "soloQueue": null
   },
@@ -24,9 +24,9 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "III",
-      "leaguePoints": 37,
-      "wins": 686,
-      "losses": 645
+      "leaguePoints": 57,
+      "wins": 688,
+      "losses": 647
     }
   },
   "꼬우새연#KR1": {
@@ -73,7 +73,7 @@
   },
   "여행자27#KR1": {
     "profileIconId": 7170,
-    "summonerLevel": 169,
+    "summonerLevel": 170,
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "SILVER",
