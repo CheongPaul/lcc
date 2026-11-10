@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "III",
-      "leaguePoints": 57,
-      "wins": 688,
+      "leaguePoints": 95,
+      "wins": 690,
       "losses": 647
     }
   },
@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 36,
-      "wins": 216,
-      "losses": 224
+      "leaguePoints": 68,
+      "wins": 219,
+      "losses": 225
     }
   },
   "나임우냐#KR1": {
@@ -48,8 +48,8 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 15,
-      "wins": 224,
+      "leaguePoints": 33,
+      "wins": 225,
       "losses": 218
     }
   },
@@ -78,9 +78,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 17,
-      "wins": 55,
-      "losses": 56
+      "leaguePoints": 34,
+      "wins": 57,
+      "losses": 57
     }
   },
   "이거진짜#KRI": {
@@ -114,8 +114,8 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 18,
-      "wins": 33,
+      "leaguePoints": 37,
+      "wins": 34,
       "losses": 39
     }
   },
