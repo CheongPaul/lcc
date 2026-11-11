@@ -1,13 +1,13 @@
 {
   "Saudade#00001": {
     "profileIconId": 4802,
-    "summonerLevel": 64,
+    "summonerLevel": 65,
     "image": "images/player-icons/1925f942a690f49d.png",
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 6,
-      "wins": 52,
+      "leaguePoints": 50,
+      "wins": 53,
       "losses": 61
     }
   },
@@ -23,34 +23,34 @@
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
-      "rank": "III",
-      "leaguePoints": 95,
-      "wins": 690,
+      "rank": "II",
+      "leaguePoints": 15,
+      "wins": 691,
       "losses": 647
     }
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 371,
+    "summonerLevel": 372,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 68,
-      "wins": 219,
-      "losses": 225
+      "leaguePoints": 62,
+      "wins": 220,
+      "losses": 227
     }
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 278,
+    "summonerLevel": 279,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 33,
-      "wins": 225,
-      "losses": 218
+      "leaguePoints": 90,
+      "wins": 228,
+      "losses": 219
     }
   },
   "더불어만진당구속#멸공멸공": {
