@@ -109,14 +109,14 @@
   },
   "Rainlight#4416": {
     "profileIconId": 5708,
-    "summonerLevel": 123,
+    "summonerLevel": 124,
     "image": "images/player-icons/c8aa76f0a124b156.png",
     "soloQueue": {
       "tier": "SILVER",
       "rank": "IV",
-      "leaguePoints": 37,
+      "leaguePoints": 0,
       "wins": 34,
-      "losses": 39
+      "losses": 41
     }
   },
   "윤조한#9326": {
