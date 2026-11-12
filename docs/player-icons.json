@@ -23,10 +23,10 @@
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
-      "rank": "II",
-      "leaguePoints": 34,
-      "wins": 693,
-      "losses": 648
+      "rank": "III",
+      "leaguePoints": 92,
+      "wins": 694,
+      "losses": 651
     }
   },
   "꼬우새연#KR1": {
@@ -35,9 +35,9 @@
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "II",
-      "leaguePoints": 94,
-      "wins": 223,
+      "rank": "I",
+      "leaguePoints": 13,
+      "wins": 224,
       "losses": 228
     }
   },
@@ -78,9 +78,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "II",
-      "leaguePoints": 92,
-      "wins": 57,
-      "losses": 59
+      "leaguePoints": 90,
+      "wins": 58,
+      "losses": 60
     }
   },
   "이거진짜#KRI": {
