@@ -19,26 +19,26 @@
   },
   "가 타 카#1997": {
     "profileIconId": 7099,
-    "summonerLevel": 457,
+    "summonerLevel": 458,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
-      "rank": "III",
-      "leaguePoints": 92,
-      "wins": 694,
-      "losses": 651
+      "rank": "I",
+      "leaguePoints": 56,
+      "wins": 703,
+      "losses": 652
     }
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 372,
+    "summonerLevel": 373,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
-      "tier": "PLATINUM",
-      "rank": "I",
-      "leaguePoints": 13,
-      "wins": 224,
-      "losses": 228
+      "tier": "EMERALD",
+      "rank": "IV",
+      "leaguePoints": 7,
+      "wins": 230,
+      "losses": 229
     }
   },
   "나임우냐#KR1": {
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 69,
+      "leaguePoints": 25,
       "wins": 228,
-      "losses": 220
+      "losses": 222
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -77,10 +77,10 @@
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "SILVER",
-      "rank": "II",
-      "leaguePoints": 90,
-      "wins": 58,
-      "losses": 60
+      "rank": "I",
+      "leaguePoints": 23,
+      "wins": 59,
+      "losses": 61
     }
   },
   "이거진짜#KRI": {
