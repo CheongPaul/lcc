@@ -18,14 +18,14 @@
     "soloQueue": null
   },
   "가 타 카#1997": {
-    "profileIconId": 7099,
+    "profileIconId": 5630,
     "summonerLevel": 459,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
-      "tier": "DIAMOND",
+      "tier": "MASTER",
       "rank": "I",
-      "leaguePoints": 43,
-      "wins": 709,
+      "leaguePoints": 6,
+      "wins": 712,
       "losses": 659
     }
   },
