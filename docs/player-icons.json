@@ -6,9 +6,9 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 31,
+      "leaguePoints": 12,
       "wins": 53,
-      "losses": 62
+      "losses": 63
     }
   },
   "waitaminuteboy#KR1": {
@@ -19,26 +19,26 @@
   },
   "가 타 카#1997": {
     "profileIconId": 7099,
-    "summonerLevel": 458,
+    "summonerLevel": 459,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "I",
-      "leaguePoints": 56,
-      "wins": 703,
-      "losses": 652
+      "leaguePoints": 43,
+      "wins": 709,
+      "losses": 659
     }
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 373,
+    "summonerLevel": 374,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "IV",
-      "leaguePoints": 7,
-      "wins": 230,
-      "losses": 229
+      "rank": "III",
+      "leaguePoints": 26,
+      "wins": 237,
+      "losses": 231
     }
   },
   "나임우냐#KR1": {
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 25,
+      "leaguePoints": 0,
       "wins": 228,
-      "losses": 222
+      "losses": 224
     }
   },
   "더불어만진당구속#멸공멸공": {
@@ -73,13 +73,13 @@
   },
   "여행자27#KR1": {
     "profileIconId": 7170,
-    "summonerLevel": 170,
+    "summonerLevel": 171,
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
-      "tier": "SILVER",
-      "rank": "I",
-      "leaguePoints": 41,
-      "wins": 60,
+      "tier": "GOLD",
+      "rank": "IV",
+      "leaguePoints": 14,
+      "wins": 64,
       "losses": 61
     }
   },
