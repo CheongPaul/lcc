@@ -97,13 +97,13 @@
   },
   "힝구리포로롱#KR1": {
     "profileIconId": 6860,
-    "summonerLevel": 402,
+    "summonerLevel": 403,
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 45,
-      "wins": 203,
+      "leaguePoints": 64,
+      "wins": 204,
       "losses": 188
     }
   },
