@@ -6,8 +6,8 @@
     "soloQueue": {
       "tier": "SILVER",
       "rank": "I",
-      "leaguePoints": 33,
-      "wins": 54,
+      "leaguePoints": 54,
+      "wins": 55,
       "losses": 63
     }
   },
@@ -19,14 +19,14 @@
   },
   "가 타 카#1997": {
     "profileIconId": 5630,
-    "summonerLevel": 459,
+    "summonerLevel": 460,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
-      "tier": "MASTER",
+      "tier": "DIAMOND",
       "rank": "I",
-      "leaguePoints": 6,
-      "wins": 712,
-      "losses": 659
+      "leaguePoints": 75,
+      "wins": 713,
+      "losses": 664
     }
   },
   "꼬우새연#KR1": {
@@ -90,8 +90,8 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "II",
-      "leaguePoints": 34,
-      "wins": 246,
+      "leaguePoints": 54,
+      "wins": 247,
       "losses": 241
     }
   },
@@ -101,9 +101,9 @@
     "image": "images/player-icons/d1e64abd639781c4.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "II",
-      "leaguePoints": 83,
-      "wins": 205,
+      "rank": "I",
+      "leaguePoints": 2,
+      "wins": 206,
       "losses": 188
     }
   },
@@ -124,10 +124,10 @@
     "summonerLevel": 65,
     "image": "images/player-icons/8c8b9ae54007eb00.png",
     "soloQueue": {
-      "tier": "PLATINUM",
-      "rank": "I",
-      "leaguePoints": 97,
-      "wins": 36,
+      "tier": "EMERALD",
+      "rank": "IV",
+      "leaguePoints": 89,
+      "wins": 40,
       "losses": 27
     }
   },
