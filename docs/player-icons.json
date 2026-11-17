@@ -24,8 +24,8 @@
     "soloQueue": {
       "tier": "MASTER",
       "rank": "I",
-      "leaguePoints": 2,
-      "wins": 720,
+      "leaguePoints": 44,
+      "wins": 722,
       "losses": 671
     }
   },
@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 47,
-      "wins": 247,
-      "losses": 235
+      "leaguePoints": 71,
+      "wins": 251,
+      "losses": 238
     }
   },
   "나임우냐#KR1": {
