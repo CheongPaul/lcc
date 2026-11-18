@@ -19,13 +19,13 @@
   },
   "가 타 카#1997": {
     "profileIconId": 5630,
-    "summonerLevel": 461,
+    "summonerLevel": 462,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "MASTER",
       "rank": "I",
-      "leaguePoints": 26,
-      "wins": 724,
+      "leaguePoints": 68,
+      "wins": 726,
       "losses": 674
     }
   },
@@ -133,7 +133,7 @@
   },
   "절불이라능#뎁마뎁마": {
     "profileIconId": 5959,
-    "summonerLevel": 515,
+    "summonerLevel": 516,
     "image": "images/player-icons/ed3b7fa967009952.png",
     "soloQueue": {
       "tier": "EMERALD",
