@@ -13,7 +13,8 @@ history.replaceState(null,'',seasonURL);
 const LCC_PLAYER_ALIASES = {
   'Hip to be Square#Fore':'가 타 카#1997',
   'ŚANDIPEN#평 화':'이거진짜#KRI',
-  '제육볶아온나#테토남':'더불어만진당구속#멸공멸공'
+  '제육볶아온나#테토남':'마잘토브#MAZAL',
+  '더불어만진당구속#멸공멸공':'마잘토브#MAZAL'
 };
 const canonicalPlayer = name => name === '윤조한' ? '윤조한#9326' : LCC_PLAYER_ALIASES[name] || name;
 const previousPlayerNames = name => Object.keys(LCC_PLAYER_ALIASES).filter(old => LCC_PLAYER_ALIASES[old] === name);
