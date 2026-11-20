@@ -24,9 +24,9 @@
     "soloQueue": {
       "tier": "MASTER",
       "rank": "I",
-      "leaguePoints": 111,
-      "wins": 728,
-      "losses": 675
+      "leaguePoints": 131,
+      "wins": 731,
+      "losses": 677
     }
   },
   "꼬우새연#KR1": {
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "GOLD",
       "rank": "I",
-      "leaguePoints": 78,
+      "leaguePoints": 57,
       "wins": 234,
-      "losses": 228
+      "losses": 229
     }
   },
   "마잘토브#MAZAL": {
@@ -59,10 +59,10 @@
     "image": "images/player-icons/d55a1b32fed01052.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "II",
-      "leaguePoints": 5,
+      "rank": "III",
+      "leaguePoints": 84,
       "wins": 198,
-      "losses": 199
+      "losses": 200
     }
   },
   "루카리오파동탄#KR1": {
