@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 85,
+      "leaguePoints": 25,
       "wins": 259,
-      "losses": 246
+      "losses": 249
     }
   },
   "나임우냐#KR1": {
@@ -55,14 +55,14 @@
   },
   "마잘토브#MAZAL": {
     "profileIconId": 5635,
-    "summonerLevel": 466,
+    "summonerLevel": 467,
     "image": "images/player-icons/d55a1b32fed01052.png",
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 58,
-      "wins": 203,
-      "losses": 202
+      "leaguePoints": 77,
+      "wins": 206,
+      "losses": 204
     }
   },
   "루카리오파동탄#KR1": {
@@ -85,14 +85,14 @@
   },
   "이거진짜#KRI": {
     "profileIconId": 6841,
-    "summonerLevel": 502,
+    "summonerLevel": 503,
     "image": "images/player-icons/778fc34d7005b6a7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "II",
-      "leaguePoints": 49,
+      "rank": "III",
+      "leaguePoints": 61,
       "wins": 252,
-      "losses": 248
+      "losses": 252
     }
   },
   "힝구리포로롱#KR1": {
