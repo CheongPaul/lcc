@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 77,
+      "leaguePoints": 56,
       "wins": 206,
-      "losses": 204
+      "losses": 205
     }
   },
   "루카리오파동탄#KR1": {
@@ -133,7 +133,7 @@
   },
   "절불이라능#뎁마뎁마": {
     "profileIconId": 5959,
-    "summonerLevel": 516,
+    "summonerLevel": 517,
     "image": "images/player-icons/ed3b7fa967009952.png",
     "soloQueue": {
       "tier": "EMERALD",
