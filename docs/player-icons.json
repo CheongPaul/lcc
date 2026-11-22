@@ -19,14 +19,14 @@
   },
   "가 타 카#1997": {
     "profileIconId": 5630,
-    "summonerLevel": 463,
+    "summonerLevel": 464,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
-      "tier": "MASTER",
+      "tier": "DIAMOND",
       "rank": "I",
-      "leaguePoints": 0,
+      "leaguePoints": 56,
       "wins": 735,
-      "losses": 688
+      "losses": 690
     }
   },
   "꼬우새연#KR1": {
@@ -60,9 +60,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 56,
+      "leaguePoints": 35,
       "wins": 206,
-      "losses": 205
+      "losses": 206
     }
   },
   "루카리오파동탄#KR1": {
