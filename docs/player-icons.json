@@ -35,10 +35,10 @@
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
-      "rank": "II",
-      "leaguePoints": 5,
+      "rank": "III",
+      "leaguePoints": 85,
       "wins": 260,
-      "losses": 251
+      "losses": 252
     }
   },
   "나임우냐#KR1": {
@@ -90,9 +90,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 57,
+      "leaguePoints": 35,
       "wins": 253,
-      "losses": 253
+      "losses": 254
     }
   },
   "힝구리포로롱#KR1": {
