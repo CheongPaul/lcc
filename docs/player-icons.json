@@ -24,21 +24,21 @@
     "soloQueue": {
       "tier": "MASTER",
       "rank": "I",
-      "leaguePoints": 5,
+      "leaguePoints": 0,
       "wins": 740,
-      "losses": 693
+      "losses": 696
     }
   },
   "꼬우새연#KR1": {
     "profileIconId": 3591,
-    "summonerLevel": 378,
+    "summonerLevel": 379,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
       "leaguePoints": 85,
-      "wins": 260,
-      "losses": 252
+      "wins": 261,
+      "losses": 253
     }
   },
   "나임우냐#KR1": {
@@ -85,14 +85,14 @@
   },
   "이거진짜#KRI": {
     "profileIconId": 6841,
-    "summonerLevel": 503,
+    "summonerLevel": 504,
     "image": "images/player-icons/778fc34d7005b6a7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 35,
-      "wins": 253,
-      "losses": 254
+      "leaguePoints": 31,
+      "wins": 254,
+      "losses": 255
     }
   },
   "힝구리포로롱#KR1": {
