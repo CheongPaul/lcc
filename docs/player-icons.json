@@ -19,38 +19,38 @@
   },
   "가 타 카#1997": {
     "profileIconId": 5630,
-    "summonerLevel": 464,
+    "summonerLevel": 465,
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
-      "tier": "MASTER",
-      "rank": "I",
-      "leaguePoints": 0,
-      "wins": 740,
-      "losses": 696
+      "tier": "DIAMOND",
+      "rank": "II",
+      "leaguePoints": 97,
+      "wins": 743,
+      "losses": 704
     }
   },
   "꼬우새연#KR1": {
-    "profileIconId": 3591,
+    "profileIconId": 4655,
     "summonerLevel": 379,
     "image": "images/player-icons/223459704a704112.png",
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 85,
-      "wins": 261,
-      "losses": 253
+      "leaguePoints": 47,
+      "wins": 262,
+      "losses": 256
     }
   },
   "나임우냐#KR1": {
     "profileIconId": 1591,
-    "summonerLevel": 280,
+    "summonerLevel": 281,
     "image": "images/player-icons/fefbb28ce76fafb7.png",
     "soloQueue": {
       "tier": "GOLD",
       "rank": "I",
-      "leaguePoints": 57,
-      "wins": 234,
-      "losses": 229
+      "leaguePoints": 55,
+      "wins": 235,
+      "losses": 230
     }
   },
   "마잘토브#MAZAL": {
@@ -60,8 +60,8 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "II",
-      "leaguePoints": 34,
-      "wins": 207,
+      "leaguePoints": 54,
+      "wins": 208,
       "losses": 207
     }
   },
@@ -90,9 +90,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "III",
-      "leaguePoints": 31,
-      "wins": 254,
-      "losses": 255
+      "leaguePoints": 22,
+      "wins": 255,
+      "losses": 257
     }
   },
   "힝구리포로롱#KR1": {
