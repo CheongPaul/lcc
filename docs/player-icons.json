@@ -24,9 +24,9 @@
     "soloQueue": {
       "tier": "DIAMOND",
       "rank": "II",
-      "leaguePoints": 79,
-      "wins": 745,
-      "losses": 708
+      "leaguePoints": 99,
+      "wins": 748,
+      "losses": 710
     }
   },
   "꼬우새연#KR1": {
@@ -36,9 +36,9 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 63,
-      "wins": 267,
-      "losses": 261
+      "leaguePoints": 65,
+      "wins": 268,
+      "losses": 262
     }
   },
   "나임우냐#KR1": {
@@ -89,10 +89,10 @@
     "image": "images/player-icons/778fc34d7005b6a7.png",
     "soloQueue": {
       "tier": "PLATINUM",
-      "rank": "IV",
-      "leaguePoints": 91,
-      "wins": 256,
-      "losses": 260
+      "rank": "III",
+      "leaguePoints": 1,
+      "wins": 258,
+      "losses": 261
     }
   },
   "힝구리포로롱#KR1": {
