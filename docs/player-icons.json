@@ -23,9 +23,9 @@
     "image": "images/player-icons/4686540361a1edcb.png",
     "soloQueue": {
       "tier": "DIAMOND",
-      "rank": "II",
-      "leaguePoints": 99,
-      "wins": 748,
+      "rank": "I",
+      "leaguePoints": 19,
+      "wins": 749,
       "losses": 710
     }
   },
@@ -48,8 +48,8 @@
     "soloQueue": {
       "tier": "GOLD",
       "rank": "I",
-      "leaguePoints": 72,
-      "wins": 236,
+      "leaguePoints": 91,
+      "wins": 237,
       "losses": 231
     }
   },
@@ -73,7 +73,7 @@
   },
   "여행자27#KR1": {
     "profileIconId": 7170,
-    "summonerLevel": 171,
+    "summonerLevel": 172,
     "image": "images/player-icons/540583d450b0c51a.png",
     "soloQueue": {
       "tier": "GOLD",
