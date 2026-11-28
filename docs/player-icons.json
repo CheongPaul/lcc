@@ -36,8 +36,8 @@
     "soloQueue": {
       "tier": "EMERALD",
       "rank": "III",
-      "leaguePoints": 27,
-      "wins": 268,
+      "leaguePoints": 48,
+      "wins": 269,
       "losses": 264
     }
   },
@@ -48,9 +48,9 @@
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 10,
+      "leaguePoints": 0,
       "wins": 238,
-      "losses": 231
+      "losses": 232
     }
   },
   "마잘토브#MAZAL": {
@@ -85,13 +85,13 @@
   },
   "이거진짜#KRI": {
     "profileIconId": 6841,
-    "summonerLevel": 505,
+    "summonerLevel": 506,
     "image": "images/player-icons/778fc34d7005b6a7.png",
     "soloQueue": {
       "tier": "PLATINUM",
       "rank": "IV",
-      "leaguePoints": 55,
-      "wins": 258,
+      "leaguePoints": 72,
+      "wins": 259,
       "losses": 263
     }
   },
